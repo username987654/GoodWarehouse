@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".controller.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/main_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_shop"
+            style="@style/myStyle"
+            android:drawableTop="@drawable/rb_shop_selector"
+            android:text="商店" />
+
+        <RadioButton
+            android:id="@+id/rb_magazines"
+            style="@style/myStyle"
+            android:drawableTop="@drawable/rb_magazines_selector"
+            android:text="杂志" />
+
+        <RadioButton
+            android:id="@+id/rb_expert"
+            style="@style/myStyle"
+            android:drawableTop="@drawable/rb_expert_selector"
+            android:text="达人" />
+
+        <RadioButton
+            android:id="@+id/rb_share"
+            style="@style/myStyle"
+            android:drawableTop="@drawable/rb_share_selector"
+            android:text="分享" />
+
+        <RadioButton
+            android:id="@+id/rb_user"
+            style="@style/myStyle"
+            android:drawableTop="@drawable/rb_user_selector"
+            android:text="个人" />
+    </RadioGroup>
+</LinearLayout>
