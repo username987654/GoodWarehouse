@@ -35,6 +35,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         if (getLayoutId() == 0) {
             TextView textView = new TextView(getActivity());
             textView.setText("哈哈哈");
@@ -43,6 +44,12 @@ public abstract class BaseFragment extends Fragment {
             textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
             return textView;
         }
+
+
+        View view = View.inflate(getActivity(), getLayoutId(), null);
+        ButterKnife.inject(this, view);
+        initTitle();
+        initData();
         if (getUrl() != null) {
             HttpUtils.HttpNet(getUrl(), new HttpUtils.onNetRequestContent() {
                 @Override
@@ -57,11 +64,6 @@ public abstract class BaseFragment extends Fragment {
                 }
             });
         }
-
-        View view = View.inflate(getActivity(), getLayoutId(), null);
-        ButterKnife.inject(this, view);
-        initTitle();
-        initData();
         initListener();
         return view;
     }

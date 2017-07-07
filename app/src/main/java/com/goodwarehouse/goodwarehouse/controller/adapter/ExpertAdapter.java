@@ -44,7 +44,7 @@ public class ExpertAdapter extends MyBserAdapter<ExpertBean.DataBean.ItemsBean> 
         @Override
         protected void setContent(ExpertBean.DataBean.ItemsBean itemsBean) {
             String orig = itemsBean.getUser_images().getOrig();
-            HttpUtils.requestImage(context, orig, expertIv);
+            HttpUtils.loadImage(context, orig, expertIv);
             String username = itemsBean.getUsername();
             expertName.setText(username);
             String duty = itemsBean.getDuty();

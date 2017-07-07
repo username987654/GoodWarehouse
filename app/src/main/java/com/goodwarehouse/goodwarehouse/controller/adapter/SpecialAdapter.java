@@ -42,7 +42,7 @@ public class SpecialAdapter extends MyBserAdapter<ShopSpecialBean.DataBean.Items
         @Override
         protected void setContent(ShopSpecialBean.DataBean.ItemsBean itemsBean) {
             String cover_img_new = itemsBean.getCover_img_new();
-            HttpUtils.requestImage(context, cover_img_new, shopSpecialIv);
+            HttpUtils.loadImage(context, cover_img_new, shopSpecialIv);
             String topic_name = itemsBean.getTopic_name();
             shopSpecialTv.setText(topic_name);
 

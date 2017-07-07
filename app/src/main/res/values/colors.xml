@@ -8,5 +8,7 @@
     <color name="text">#FFFFFF</color>
     <color name="background">#16171A</color>
     <color name="defaultColor">#747474</color>
+    <color name="defaultSwitchover">#424950</color>
+
 </resources>
 

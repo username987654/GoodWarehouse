@@ -41,7 +41,7 @@ public class TypeAdabter extends MyBserAdapter<ShopTypeBean.DataBean.ItemsBean> 
         protected void setContent(ShopTypeBean.DataBean.ItemsBean itemsBean) {
             String cover_new_img = itemsBean.getCover_new_img();
             //加载图片
-            HttpUtils.requestImage(context, cover_new_img, itemShopTypeIv);
+            HttpUtils.loadImage(context, cover_new_img, itemShopTypeIv);
         }
 
         @Override

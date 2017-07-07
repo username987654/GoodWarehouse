@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
-import com.goodwarehouse.goodwarehouse.bean.CommodityBean;
+import com.goodwarehouse.goodwarehouse.bean.BrandDetailsBean;
 import com.goodwarehouse.goodwarehouse.controller.adapter.baseadapter.MyBserAdapter;
 import com.goodwarehouse.goodwarehouse.controller.adapter.holder.BaseViewHolder;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
@@ -18,14 +18,13 @@ import java.util.List;
 import butterknife.InjectView;
 
 /**
- * Created by HaoMeng on 2017-07-06.
+ * Created by HaoMeng on 2017-07-07.
  */
 
-public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.ItemsBean> {
-
+public class BrandProductAdapter extends MyBserAdapter<BrandDetailsBean.DataBean.ItemsBean> {
     private final Context context;
 
-    public CommodityAdapter(Context context, List<CommodityBean.DataBean.ItemsBean> datas) {
+    public BrandProductAdapter(Context context, List<BrandDetailsBean.DataBean.ItemsBean> datas) {
         super(context, datas);
         this.context = context;
     }
@@ -35,10 +34,12 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
         return new ViewHolder();
     }
 
-    class ViewHolder extends BaseViewHolder<CommodityBean.DataBean.ItemsBean> {
+    class ViewHolder extends BaseViewHolder<BrandDetailsBean.DataBean.ItemsBean> {
 
         @InjectView(R.id.commodity_iv)
         ImageView commodityIv;
+        @InjectView(R.id.commodity_discount_iv)
+        ImageView commodityDiscountIv;
         @InjectView(R.id.commodity_title)
         TextView commodityTitle;
         @InjectView(R.id.commodity_brand_info)
@@ -49,11 +50,9 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
         TextView commlikePrice;
         @InjectView(R.id.discount_price)
         TextView discountPrice;
-        @InjectView(R.id.commodity_discount_iv)
-        ImageView commodityDiscountIv;
 
         @Override
-        protected void setContent(CommodityBean.DataBean.ItemsBean itemsBean) {
+        protected void setContent(BrandDetailsBean.DataBean.ItemsBean itemsBean) {
             String goods_image = itemsBean.getGoods_image();
             HttpUtils.loadImage(context, goods_image, commodityIv);
             String goods_name = itemsBean.getGoods_name();
@@ -66,7 +65,7 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
             String discount_price = itemsBean.getDiscount_price();
             String promotion_imgurl = itemsBean.getPromotion_imgurl();
             if (!TextUtils.isEmpty(promotion_imgurl)) {
-                HttpUtils.loadImage(context,promotion_imgurl,commodityDiscountIv);
+                HttpUtils.loadImage(context, promotion_imgurl, commodityDiscountIv);
                 discountPrice.setVisibility(View.VISIBLE);
                 discountPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
                 commlikePrice.setText("￥" + discount_price);
@@ -74,11 +73,7 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
             } else {
                 commlikePrice.setText(price);
             }
-//            if (!TextUtils.isEmpty(price)) {
-//
-//                discountPrice.setText("￥" + price);
-//
-//            }
+
         }
 
         @Override
@@ -86,5 +81,4 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
             return View.inflate(context, R.layout.item_commodity, null);
         }
     }
-
 }

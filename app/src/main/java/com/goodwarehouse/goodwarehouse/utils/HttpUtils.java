@@ -42,11 +42,18 @@ public class HttpUtils {
         void onResponse(String response);
     }
 
-    public static void requestImage(Context context, String url, ImageView iv) {
+    public static void loadImage(Context context, String url, ImageView iv) {
         Picasso.with(context)
                 .load(url)
                 .error(R.drawable.bg_topic_favour)
                 .placeholder(R.drawable.bg_topic_favour)
                 .into(iv);
+    }
+
+    public static void loadCricleImage(Context context, String url, ImageView iv) {
+        Picasso.with(context)
+                .load(url)
+                .error(R.drawable.bg_topic_favour)
+                .transform(new CircleTransform()).into(iv);
     }
 }

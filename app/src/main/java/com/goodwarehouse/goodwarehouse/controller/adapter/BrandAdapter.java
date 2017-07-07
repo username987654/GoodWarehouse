@@ -42,7 +42,7 @@ public class BrandAdapter extends MyBserAdapter<ShopBrandBean.DataBean.ItemsBean
         @Override
         protected void setContent(ShopBrandBean.DataBean.ItemsBean itemsBean) {
             String brand_logo = itemsBean.getBrand_logo();
-            HttpUtils.requestImage(context,brand_logo,shopBrandIv);
+            HttpUtils.loadImage(context,brand_logo,shopBrandIv);
             String brand_name = itemsBean.getBrand_name();
             shopBrandTv.setText(brand_name);
         }
