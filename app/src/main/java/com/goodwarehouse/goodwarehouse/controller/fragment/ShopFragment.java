@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
-import com.goodwarehouse.goodwarehouse.controller.fragment.shoppager.BrandFragment;
-import com.goodwarehouse.goodwarehouse.controller.fragment.shoppager.TypeFragment;
-import com.goodwarehouse.goodwarehouse.controller.fragment.shoppager.GiftFragment;
-import com.goodwarehouse.goodwarehouse.controller.fragment.shoppager.HomePageFragment;
-import com.goodwarehouse.goodwarehouse.controller.fragment.shoppager.SpecialFragment;
+import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.BrandFragment;
+import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.TypeFragment;
+import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.GiftFragment;
+import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.HomePageFragment;
+import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.SpecialFragment;
 
 import java.util.ArrayList;
 

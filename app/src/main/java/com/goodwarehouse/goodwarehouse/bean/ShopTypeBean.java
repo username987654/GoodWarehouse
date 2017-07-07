@@ -1,4 +1,4 @@
-package com.goodwarehouse.goodwarehouse.bean.shopbean;
+package com.goodwarehouse.goodwarehouse.bean;
 
 import java.util.List;
 

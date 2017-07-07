@@ -1,4 +1,4 @@
-package com.goodwarehouse.goodwarehouse.controller.fragment.shoppager;
+package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 

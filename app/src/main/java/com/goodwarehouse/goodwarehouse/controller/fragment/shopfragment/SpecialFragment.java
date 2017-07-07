@@ -1,4 +1,4 @@
-package com.goodwarehouse.goodwarehouse.controller.fragment.shoppager;
+package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,8 +8,8 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
-import com.goodwarehouse.goodwarehouse.bean.shopbean.ShopSpecialBean;
-import com.goodwarehouse.goodwarehouse.controller.adapter.shopadapter.SpecialAdapter;
+import com.goodwarehouse.goodwarehouse.bean.ShopSpecialBean;
+import com.goodwarehouse.goodwarehouse.controller.adapter.SpecialAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
 import java.util.List;

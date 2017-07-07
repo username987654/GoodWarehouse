@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popupwindow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/pw_price_all"
+        style="@style/myStylePopupWindow"
+        android:text="全部" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#44000000" />
+
+    <TextView
+        android:id="@+id/pw_price_1"
+        style="@style/myStylePopupWindow"
+        android:text="0 - 200" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#44000000" />
+
+    <TextView
+        android:id="@+id/pw_price_2"
+        style="@style/myStylePopupWindow"
+        android:text="201 - 500" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#44000000" />
+
+    <TextView
+        android:id="@+id/pw_price_3"
+        style="@style/myStylePopupWindow"
+        android:text="501 - 1000" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#44000000" />
+
+    <TextView
+        android:id="@+id/pw_price_4"
+        style="@style/myStylePopupWindow"
+        android:text="1001 - 3000" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#44000000" />
+
+    <TextView
+        android:id="@+id/pw_price_5"
+        style="@style/myStylePopupWindow"
+        android:text="3000已上" />
+
+
+</LinearLayout>

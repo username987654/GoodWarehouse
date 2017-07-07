@@ -1,4 +1,4 @@
-package com.goodwarehouse.goodwarehouse.controller.adapter.shopadapter;
+package com.goodwarehouse.goodwarehouse.controller.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
-import com.goodwarehouse.goodwarehouse.bean.shopbean.ShopBrandBean;
+import com.goodwarehouse.goodwarehouse.bean.ShopBrandBean;
 import com.goodwarehouse.goodwarehouse.controller.adapter.baseadapter.MyBserAdapter;
 import com.goodwarehouse.goodwarehouse.controller.adapter.holder.BaseViewHolder;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;

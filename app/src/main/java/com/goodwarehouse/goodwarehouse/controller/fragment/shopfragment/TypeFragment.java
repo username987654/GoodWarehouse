@@ -1,15 +1,16 @@
-package com.goodwarehouse.goodwarehouse.controller.fragment.shoppager;
+package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
-import com.goodwarehouse.goodwarehouse.bean.shopbean.ShopTypeBean;
-import com.goodwarehouse.goodwarehouse.controller.adapter.shopadapter.TypeAdabter;
+import com.goodwarehouse.goodwarehouse.bean.ShopTypeBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.CommodityActivity;
+import com.goodwarehouse.goodwarehouse.controller.adapter.TypeAdabter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
 import java.util.List;
@@ -25,6 +26,16 @@ public class TypeFragment extends BaseFragment {
     GridView shopTypeGv;
     private TypeAdabter myGridAdabter;
     private List<ShopTypeBean.DataBean.ItemsBean> items;
+    String[] urls = {NetRequestSite.HOME_URL, NetRequestSite.FITMENT_URL,
+            NetRequestSite.STATIONERY_URL, NetRequestSite.NUMERICAL_URL,
+            NetRequestSite.PLAY_URL, NetRequestSite.KITCHEN_URL,
+            NetRequestSite.CATE_URL, NetRequestSite.MENWEAR_URL,
+            NetRequestSite.FROCK_URL, NetRequestSite.BABYWEAR_URL,
+            NetRequestSite.SHOE_URL, NetRequestSite.ACC_URL,
+            NetRequestSite.BEAUTY_URL, NetRequestSite.OUTDOORS_URL,
+            NetRequestSite.PLANT_URL, NetRequestSite.BOOK_URL,
+            NetRequestSite.GIFT_URL, NetRequestSite.RECOMMEND_URL,
+            NetRequestSite.ART_URL};
 
     @Override
     public String getUrl() {
@@ -41,7 +52,11 @@ public class TypeFragment extends BaseFragment {
         shopTypeGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context, "" + items.get(i).getCat_name(), Toast.LENGTH_SHORT).show();
+                String url = urls[i];
+                Intent intent = new Intent(context, CommodityActivity.class);
+                intent.putExtra(URL, url);
+                context.startActivity(intent);
+
             }
         });
 

@@ -45,8 +45,8 @@ public class HttpUtils {
     public static void requestImage(Context context, String url, ImageView iv) {
         Picasso.with(context)
                 .load(url)
-                .error(R.drawable.ic_iocn)
-                .placeholder(R.drawable.ic_iocn)
+                .error(R.drawable.bg_topic_favour)
+                .placeholder(R.drawable.bg_topic_favour)
                 .into(iv);
     }
 }
