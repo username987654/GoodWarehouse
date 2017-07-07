@@ -1,12 +1,13 @@
 package com.goodwarehouse.goodwarehouse.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by HaoMeng on 2017-07-06.
  */
 
-public class ShopBrandBean {
+public class ShopBrandBean implements Serializable {
 
     /**
      * meta : {"status":0,"server_time":"2017-07-06 15:18:51","account_id":0,"cost":0.004673957824707,"errdata":null,"errmsg":""}
@@ -42,7 +43,7 @@ public class ShopBrandBean {
         this.data = data;
     }
 
-    public static class MetaBean {
+    public static class MetaBean implements Serializable {
         /**
          * status : 0
          * server_time : 2017-07-06 15:18:51
@@ -108,7 +109,7 @@ public class ShopBrandBean {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * has_more : true
          * num_items : 736
@@ -143,7 +144,7 @@ public class ShopBrandBean {
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Serializable {
             /**
              * brand_id : 841
              * brand_name : HAZE Collection

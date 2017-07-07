@@ -1,14 +1,15 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.ShopBrandBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.BrandDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.BrandAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
@@ -24,6 +25,8 @@ public class BrandFragment extends BaseFragment {
     @InjectView(R.id.shop_brand_lv)
     ListView shopBrandLv;
     private List<ShopBrandBean.DataBean.ItemsBean> items;
+    public static final String BRANDBEAN = "brand_bran";
+
 
     @Override
     public void initListener() {
@@ -35,7 +38,9 @@ public class BrandFragment extends BaseFragment {
         shopBrandLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context, "" + items.get(i).getBrand_name(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, BrandDetailsActivity.class);
+                intent.putExtra(BRANDBEAN, items.get(i));
+                context.startActivity(intent);
             }
         });
     }
@@ -44,8 +49,9 @@ public class BrandFragment extends BaseFragment {
     @Override
     public void processData(String response) {
         ShopBrandBean shopBrandBean = JSON.parseObject(response, ShopBrandBean.class);
-        items = shopBrandBean.getData().getItems();
-        BrandAdapter brandAdapter = new BrandAdapter(context, items);
+        List<ShopBrandBean.DataBean.ItemsBean> items = shopBrandBean.getData().getItems();
+        this.items = shopBrandBean.getData().getItems();
+        BrandAdapter brandAdapter = new BrandAdapter(context, this.items);
         shopBrandLv.setAdapter(brandAdapter);
     }
 

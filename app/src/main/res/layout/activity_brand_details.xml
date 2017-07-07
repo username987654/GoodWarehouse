@@ -4,9 +4,11 @@
     android:id="@+id/activity_brand_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
-    tools:context="com.goodwarehouse.goodwarehouse.controller.activity.BrandInfoActivity">
+    android:orientation="vertical"
+    tools:context="com.goodwarehouse.goodwarehouse.controller.activity.BrandDetailsActivity">
+
+    <include layout="@layout/titlebar"/>
 
     <include layout="@layout/shop_brand_title" />
 

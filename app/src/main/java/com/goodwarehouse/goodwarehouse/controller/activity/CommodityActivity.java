@@ -63,9 +63,10 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
     private TextView pwPeice5;
 
     @Override
-    public void initView() {
+    public void initTitle() {
         titleBack.setVisibility(View.VISIBLE);
         shopCart.setVisibility(View.VISIBLE);
+        titleText.setText("商店");
     }
 
     @Override

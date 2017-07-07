@@ -5,25 +5,27 @@
     android:background="@drawable/brand_bg">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
         <ImageView
             android:id="@+id/brand_iocn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/daren_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/daren_selected" />
+
         <TextView
             android:id="@+id/brand_name"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/text"
-            android:textSize="25sp"
-            android:text="HAZE Collection"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="HAZE Collection"
+            android:textColor="@color/text"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

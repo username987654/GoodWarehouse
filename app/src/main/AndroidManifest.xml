@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".controller.activity.MainActivity" />
         <activity android:name=".controller.activity.CommodityActivity" />
-        <activity android:name=".controller.activity.BrandInfoActivity"></activity>
+        <activity android:name=".controller.activity.BrandDetailsActivity"></activity>
     </application>
 
 </manifest>
