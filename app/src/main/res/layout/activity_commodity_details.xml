@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <include layout="@layout/commodity_details_comtent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/commodity_service"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="#03294D"
+            android:src="@drawable/menu_custom_service_2" />
+
+        <TextView
+            android:id="@+id/commodity_release_cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#14599b"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/commodity_purchase"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3"
+            android:background="#7097C2"
+            android:gravity="center"
+            android:text="直接购买"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+</RelativeLayout>

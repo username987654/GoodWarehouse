@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,7 +14,7 @@
         <ImageView
             android:id="@+id/shop_gift_sift"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="150dp"
             android:background="@drawable/ic_present_7" />
 
         <LinearLayout
@@ -76,12 +78,16 @@
                     android:background="@drawable/ic_present_6" />
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/shop_gift_remind"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/bg_gift_remind_entrance" />
+
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/shop_gift_remind"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_gift_remind_entrance" />
+
     </LinearLayout>
 </ScrollView>
+
+</LinearLayout>

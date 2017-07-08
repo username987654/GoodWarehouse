@@ -66,19 +66,15 @@ public class CommodityAdapter extends MyBserAdapter<CommodityBean.DataBean.Items
             String discount_price = itemsBean.getDiscount_price();
             String promotion_imgurl = itemsBean.getPromotion_imgurl();
             if (!TextUtils.isEmpty(promotion_imgurl)) {
-                HttpUtils.loadImage(context,promotion_imgurl,commodityDiscountIv);
+                HttpUtils.loadImage(context, promotion_imgurl, commodityDiscountIv);
                 discountPrice.setVisibility(View.VISIBLE);
                 discountPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
                 commlikePrice.setText("￥" + discount_price);
                 discountPrice.setText("￥" + price);
             } else {
-                commlikePrice.setText(price);
+                commlikePrice.setText("￥"+price);
             }
-//            if (!TextUtils.isEmpty(price)) {
-//
-//                discountPrice.setText("￥" + price);
-//
-//            }
+
         }
 
         @Override

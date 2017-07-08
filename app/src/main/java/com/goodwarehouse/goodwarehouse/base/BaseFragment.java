@@ -25,6 +25,8 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
     public Context context;
     public static final String URL = "type_url";
+    public static final String PIC_URL = "topic_url";
+    public static final String TOPIC_NAME = "topic_name";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

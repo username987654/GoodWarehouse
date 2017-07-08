@@ -1,14 +1,18 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.ExpertBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.ExpertDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.ExpertAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
@@ -55,7 +59,12 @@ public class ExpertFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-
+        fmExpertGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(context, ExpertDetailsActivity.class));
+            }
+        });
 
     }
 

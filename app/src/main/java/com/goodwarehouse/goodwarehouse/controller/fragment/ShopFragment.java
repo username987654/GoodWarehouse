@@ -70,7 +70,8 @@ public class ShopFragment extends BaseFragment {
 
     private void setTab() {
         fmShopTab.setupWithViewPager(fmShopVp);
-        fmShopTab.setTabMode(TabLayout.MODE_SCROLLABLE);
+        fmShopTab.setTabGravity(TabLayout.GRAVITY_FILL);
+        fmShopTab.setTabMode(TabLayout.MODE_FIXED);
     }
 
     private void setFragment() {

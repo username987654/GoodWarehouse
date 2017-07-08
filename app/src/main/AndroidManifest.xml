@@ -19,7 +19,10 @@
         </activity>
         <activity android:name=".controller.activity.MainActivity" />
         <activity android:name=".controller.activity.CommodityActivity" />
-        <activity android:name=".controller.activity.BrandDetailsActivity"></activity>
+        <activity android:name=".controller.activity.BrandDetailsActivity" />
+        <activity android:name=".controller.activity.WebPageActivity" />
+        <activity android:name=".controller.activity.ExpertDetailsActivity"></activity>
+        <activity android:name=".controller.activity.CommodityDetailsActivity"></activity>
     </application>
 
 </manifest>

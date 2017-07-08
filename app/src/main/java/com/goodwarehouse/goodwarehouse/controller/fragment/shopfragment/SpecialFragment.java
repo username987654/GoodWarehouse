@@ -1,5 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -9,6 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.ShopSpecialBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.WebPageActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.SpecialAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
@@ -31,7 +33,12 @@ public class SpecialFragment extends BaseFragment {
         shopSpecialLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(context, "" + items.get(i), Toast.LENGTH_SHORT).show();
+                String topic_url = items.get(i).getTopic_url();
+                String topic_name = items.get(i).getTopic_name();
+                Intent intent = new Intent(context, WebPageActivity.class);
+                intent.putExtra(PIC_URL, topic_url);
+                intent.putExtra(TOPIC_NAME, topic_name);
+                context.startActivity(intent);
             }
         });
 

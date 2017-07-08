@@ -71,7 +71,7 @@ public class BrandProductAdapter extends MyBserAdapter<BrandDetailsBean.DataBean
                 commlikePrice.setText("￥" + discount_price);
                 discountPrice.setText("￥" + price);
             } else {
-                commlikePrice.setText(price);
+                commlikePrice.setText("￥"+price);
             }
 
         }
