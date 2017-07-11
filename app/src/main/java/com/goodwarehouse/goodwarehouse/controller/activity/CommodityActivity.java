@@ -1,5 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -80,7 +81,8 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
         shopTypeGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(CommodityActivity.this, "" + items.get(i).getGoods_name(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CommodityActivity.this, "" + items.get(i).getGoods_name(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CommodityActivity.this, CommodityDetailsActivity.class));
             }
         });
         priceScreen.setOnClickListener(new View.OnClickListener() {
@@ -162,26 +164,32 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
             case R.id.pw_price_all:
                 showPopupWindowItembg(pwPeiceAll);
                 Toast.makeText(this, "全部", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
             case R.id.pw_price_1:
                 showPopupWindowItembg(pwPeice1);
                 Toast.makeText(this, "0-200", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
             case R.id.pw_price_2:
                 showPopupWindowItembg(pwPeice2);
                 Toast.makeText(this, "201-500", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
             case R.id.pw_price_3:
                 showPopupWindowItembg(pwPeice3);
                 Toast.makeText(this, "501-100", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
             case R.id.pw_price_4:
                 showPopupWindowItembg(pwPeice4);
                 Toast.makeText(this, "1001-3000", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
             case R.id.pw_price_5:
                 showPopupWindowItembg(pwPeice5);
                 Toast.makeText(this, "3000以上", Toast.LENGTH_SHORT).show();
+                mPopWindow.dismiss();
                 break;
         }
 

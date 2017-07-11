@@ -2,7 +2,6 @@ package com.goodwarehouse.goodwarehouse.controller.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +23,16 @@ import butterknife.InjectView;
 public class HomePageAdapter extends RecyclerView.Adapter {
     private static final int HOMEPAGETYPE1 = 1;
     private static final int HOMEPAGETYPE2 = 2;
-    private static final int HOMEPAGETYPE3 = 3;
+    private static final int HOMEPAGETYPE3 = 6;
     private static final int HOMEPAGETYPE4 = 4;
     private static int RECORDHOMEPAGETYPE = HOMEPAGETYPE1;
 
 
     private final Context context;
-    private final List<ShopHomePageBean.DataBean.ItemsBean.ListBean> list;
+    private final List<ShopHomePageBean.DataBean.ItemsBean.ListBeanX> list;
     private final LayoutInflater inflater;
 
-
-    public HomePageAdapter(Context context, List<ShopHomePageBean.DataBean.ItemsBean.ListBean> list) {
+    public HomePageAdapter(Context context, List<ShopHomePageBean.DataBean.ItemsBean.ListBeanX> list) {
         this.context = context;
         this.list = list;
         this.inflater = LayoutInflater.from(context);
@@ -42,7 +40,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        int home_type = Integer.parseInt(list.get(position).getHome_type());
+        int home_type = list.get(position).getHome_type();
         if (HOMEPAGETYPE1 == home_type) {
             RECORDHOMEPAGETYPE = HOMEPAGETYPE1;
         } else if (HOMEPAGETYPE2 == home_type) {
@@ -81,6 +79,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             Type2ViewHodler type2Holder = (Type2ViewHodler) holder;
             type2Holder.setData(list.get(position));
         } else if (getItemViewType(position) == HOMEPAGETYPE3) {
+            Type3ViewHodler type3Hodler = (Type3ViewHodler) holder;
+            type3Hodler.setData(list.get(position).getList().get(position).getPic_url());
 
         } else if (getItemViewType(position) == HOMEPAGETYPE4) {
             Type4ViewHodler type4Holder = (Type4ViewHodler) holder;
@@ -109,7 +109,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             });
         }
 
-        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBean listBean) {
+        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBeanX listBean) {
             String pic_url = listBean.getOne().getPic_url();
             HttpUtils.loadImage(context, pic_url, homepageIv);
         }
@@ -128,7 +128,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             homepageType2RightIv.setOnClickListener(this);
         }
 
-        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBean listBean) {
+        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBeanX listBean) {
             String pic_url = listBean.getOne().getPic_url();
             String pic_url1 = listBean.getTwo().getPic_url();
             HttpUtils.loadImage(context, pic_url, homepageType2LeftIv);
@@ -149,16 +149,24 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
     }
 
-    class Type3ViewHodler extends RecyclerView.ViewHolder {
-
+    class Type3ViewHodler extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @InjectView(R.id.homepage_iv6)
+        ImageView homepageIv6;
 
         public Type3ViewHodler(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
+            homepageIv6.setOnClickListener(this);
         }
 
-        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBean listBean) {
+        public void setData(String pic_url) {
 
+            HttpUtils.loadImage(context, pic_url, homepageIv6);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onItemClickListener.onClick(view, getAdapterPosition(), HOMEPAGETYPE3);
         }
     }
 
@@ -182,7 +190,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             homepageType4Right2.setOnClickListener(this);
         }
 
-        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBean listBean) {
+        public void setData(ShopHomePageBean.DataBean.ItemsBean.ListBeanX listBean) {
             String pic_url = listBean.getOne().getPic_url();
             String pic_url1 = listBean.getTwo().getPic_url();
             String pic_url2 = listBean.getThree().getPic_url();

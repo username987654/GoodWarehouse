@@ -27,6 +27,7 @@ public abstract class BaseFragment extends Fragment {
     public static final String URL = "type_url";
     public static final String PIC_URL = "topic_url";
     public static final String TOPIC_NAME = "topic_name";
+    public static final String EXPERTUBEAN = "expertubean";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +62,6 @@ public abstract class BaseFragment extends Fragment {
 
                 @Override
                 public void onResponse(String response) {
-                    Log.e("TAG", "解析成功");
                     processData(response);
                 }
             });

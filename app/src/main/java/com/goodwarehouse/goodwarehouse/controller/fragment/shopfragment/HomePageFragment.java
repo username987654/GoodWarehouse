@@ -26,7 +26,7 @@ public class HomePageFragment extends BaseFragment {
     @InjectView(R.id.shop_homepage_rv)
     RecyclerView shopHomepageRv;
     private HomePageAdapter homePageAdapter;
-    private List<ShopHomePageBean.DataBean.ItemsBean.ListBean> list;
+    private List<ShopHomePageBean.DataBean.ItemsBean.ListBeanX> list;
 
 
     private String topic_name;

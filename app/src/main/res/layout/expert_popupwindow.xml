@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popupwindow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/pw_price_all"
+        style="@style/myStylePopupWindow"
+        android:background="#434343"
+        android:text="默认推荐"
+        android:textColor="#989898" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898" />
+
+    <TextView
+        android:id="@+id/pw_price_1"
+        style="@style/myStylePopupWindow"
+        android:background="#434343"
+        android:text="最多推荐"
+        android:textColor="#989898" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898" />
+
+    <TextView
+        android:id="@+id/pw_price_2"
+        style="@style/myStylePopupWindow"
+        android:background="#434343"
+        android:text="最受欢迎"
+        android:textColor="#989898" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898" />
+
+    <TextView
+        android:id="@+id/pw_price_3"
+        style="@style/myStylePopupWindow"
+        android:background="#434343"
+        android:text="最新推荐"
+        android:textColor="#989898" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989898" />
+
+    <TextView
+        android:id="@+id/pw_price_4"
+        style="@style/myStylePopupWindow"
+        android:background="#434343"
+        android:text="最新加入"
+        android:textColor="#989898" />
+
+</LinearLayout>

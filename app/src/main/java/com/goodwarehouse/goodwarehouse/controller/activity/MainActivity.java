@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity {
                 }
                 Fragment fragment = fragments.get(recordProition);
                 showFragment(fragment);
-
             }
         });
     }

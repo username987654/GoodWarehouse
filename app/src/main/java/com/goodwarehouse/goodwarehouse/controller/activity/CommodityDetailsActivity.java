@@ -1,5 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.activity;
 
+import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
 
 /**
@@ -19,6 +20,6 @@ public class CommodityDetailsActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_commodity_details;
     }
 }

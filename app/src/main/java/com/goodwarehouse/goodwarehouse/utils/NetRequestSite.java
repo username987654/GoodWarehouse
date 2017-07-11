@@ -6,6 +6,9 @@ package com.goodwarehouse.goodwarehouse.utils;
 
 public class NetRequestSite {
     public static final int PAGE = 1;
+    /*
+    * 商店
+    * */
     //商店 - 分类
     public static final String TYPE_URL = "http://mobile.iliangcang.com/goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
     //商店 - 品牌
@@ -15,20 +18,55 @@ public class NetRequestSite {
     //商店 - 品牌 - 详情页
     public static final String BRAND_INFO_FROEPART_URL = "http://mobile.iliangcang.com/brand/brandShopList?app_key=Android&brand_id=";
     public static final String BRAND_INFO_END_URL = "&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
-
     //商店 - 专题
     public static final String SPECIAL_FROEPART_URL = "http://mobile.iliangcang.com/goods/shopSpecial?app_key=Android&count=10&page=";
     public static final String SPECIAL_END_URL = "&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0";
     public static final String SPECIAL_URL = SPECIAL_FROEPART_URL + PAGE + SPECIAL_END_URL;
+
+
     /*
     * 首页
     * */
     public static final String HOME_PAGE_URL = "http://mobile.iliangcang.com/goods/newShopHome?app_key=Android&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0";
 
-    //达人
+
+    /*
+    * 达人
+    * */
     public static final String EXPERT_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&page=";
     public static final String EXPERT_END_URL = "&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
     public static final String EXPERT_URL = EXPERT_FROEPART_URL + PAGE + EXPERT_END_URL;
+    //达人 - 喜欢
+    public static final String EXPERT_LIKE_FROEPART_URL = "http://mobile.iliangcang.com/user/masterLike?app_key=Android&count=10&owner_id=";
+    public static final String EXPERT_LIKE_END_URL = "&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+    //达人 - 推荐
+    public static final String EXPERT_RECOMMEND_FROEPART_URL = "http://mobile.iliangcang.com/user/masterListInfo?app_key=Android&count=10&owner_id=";
+    public static final String EXPERT_RECOMMEND_END_URL = "&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+    //达人 - 关注
+    public static final String EXPERT_FANS_FROEPART_URL = "http://mobile.iliangcang.com/user/masterFollow?app_key=Android&count=12&owner_id=";
+    public static final String EXPERT_FANS_END_URL = "&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+    //达人 - 粉丝
+    public static final String EXPERT_ATTENTION_END_URL = "&page=1&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+    public static final String EXPERT_ATTENTION_FROEPART_URL = "http://mobile.iliangcang.com/user/masterFollowed?app_key=Android&count=12&owner_id=";
+
+    //达人 最多推荐
+    public static final String EXPERT_MUCHMORE_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&orderby=goods_sum&page=";
+    public static final String EXPERT_MUCHMORE_END_URL = "&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
+    public static final String EXPERT_MUCHMORE_URL = EXPERT_MUCHMORE_FROEPART_URL + PAGE + EXPERT_MUCHMORE_END_URL;
+    //达人 最受欢迎
+    public static final String EXPERT_WELCOME_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&orderby=followers&page=";
+    public static final String EXPERT_WELCOME_END_URL = "&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
+    public static final String EXPERT_WELCOME_URL = EXPERT_WELCOME_FROEPART_URL + PAGE + EXPERT_WELCOME_END_URL;
+    //达人 最新推荐
+    public static final String EXPERT_NEW_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&orderby=action_time&page=";
+    public static final String EXPERT_NEW_END_URL = "&sig=CD0E234053E25DD6111E3DBD450A4B85%7C954252010968868&v=1.0";
+    public static final String EXPERT_NEW_URL = EXPERT_NEW_FROEPART_URL + PAGE + EXPERT_NEW_END_URL;
+    //达人 最新加入
+    public static final String EXPERT_JOIN_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&orderby=action_time&page=";
+    public static final String EXPERT_JOIN_END_URL = "&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
+    public static final String EXPERT_JOIN_URL = EXPERT_JOIN_FROEPART_URL + PAGE + EXPERT_JOIN_END_URL;
+
+
 
     //商店 - 分类 - 家居
     public static final String TYPE_HOME_FROEPART_URL = "http://mobile.iliangcang.com/goods/goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=";
