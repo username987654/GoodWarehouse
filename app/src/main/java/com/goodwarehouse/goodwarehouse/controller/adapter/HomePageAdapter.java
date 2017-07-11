@@ -58,13 +58,13 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == HOMEPAGETYPE1) {
-            return new Type1ViewHolder(inflater.inflate(R.layout.shop_homepage_type1, null));
+            return new Type1ViewHolder(inflater.inflate(R.layout.shop_homepage_type1, parent,false));
         } else if (viewType == HOMEPAGETYPE2) {
-            return new Type2ViewHodler(inflater.inflate(R.layout.shop_homepage_type2, null));
+            return new Type2ViewHodler(inflater.inflate(R.layout.shop_homepage_type2, parent,false));
         } else if (viewType == HOMEPAGETYPE3) {
-            return new Type3ViewHodler(inflater.inflate(R.layout.shop_homepage_type3, null));
+            return new Type3ViewHodler(inflater.inflate(R.layout.shop_homepage_type3, parent,false));
         } else if (viewType == HOMEPAGETYPE4) {
-            return new Type4ViewHodler(inflater.inflate(R.layout.shop_homepage_type4, null));
+            return new Type4ViewHodler(inflater.inflate(R.layout.shop_homepage_type4, parent,false));
         }
 
         return null;

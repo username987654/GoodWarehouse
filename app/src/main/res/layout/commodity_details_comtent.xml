@@ -8,26 +8,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="60dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp">
+            android:layout_height="360dp">
 
-            <ImageView
+            <android.support.v4.view.ViewPager
+                android:id="@+id/commodity_vp"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:background="#FFFFFF" />
+                android:layout_height="360dp" />
 
             <ImageView
+                android:id="@+id/commodity_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/register_bonus" />
+                android:layout_marginRight="20dp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -46,7 +47,7 @@
                     android:id="@+id/commodity_breand_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="JEX捷古斯"
                     android:textColor="@color/text"
                     android:textSize="20sp" />
@@ -55,7 +56,7 @@
                     android:id="@+id/commdoity_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="介绍"
                     android:textColor="@color/text" />
 
@@ -63,7 +64,7 @@
                     android:id="@+id/commodity_effect"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="作用"
                     android:textColor="#6F98C3" />
             </LinearLayout>
@@ -71,6 +72,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -99,7 +101,7 @@
                 <ImageView
                     android:id="@+id/commoity_share"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_share_shopgood" />
@@ -125,6 +127,7 @@
                 android:id="@+id/commodity_past_picre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="￥128.00"
                 android:textColor="#6F98C3" />
         </LinearLayout>
@@ -207,8 +210,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/brean_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -216,28 +220,37 @@
             android:background="@color/defaultSwitchover">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/brand_head"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/ease_chat_face_normal" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:id="@+id/brean_name"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:text="易伽猫"
                 android:textColor="@color/text"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_right_liangcang" />
         </LinearLayout>
 
         <include layout="@layout/switchover_layout" />
 
         <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </FrameLayout>
-
+            android:id="@+id/commodity_details_fragmemt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
     </LinearLayout>
 
 </ScrollView>

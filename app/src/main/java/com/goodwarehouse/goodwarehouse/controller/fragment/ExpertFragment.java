@@ -50,6 +50,7 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
     private TextView pwPeice2;
     private TextView pwPeice3;
     private TextView pwPeice4;
+    private ExpertAdapter expertAdapter;
 
 
     @Override
@@ -61,7 +62,7 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
     public void processData(String response) {
         ExpertBean expertBean = JSON.parseObject(response, ExpertBean.class);
         items = expertBean.getData().getItems();
-        ExpertAdapter expertAdapter = new ExpertAdapter(context, items);
+        expertAdapter = new ExpertAdapter(context, items);
         fmExpertGv.setAdapter(expertAdapter);
     }
 

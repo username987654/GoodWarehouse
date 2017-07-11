@@ -67,7 +67,6 @@ public class NetRequestSite {
     public static final String EXPERT_JOIN_URL = EXPERT_JOIN_FROEPART_URL + PAGE + EXPERT_JOIN_END_URL;
 
 
-
     //商店 - 分类 - 家居
     public static final String TYPE_HOME_FROEPART_URL = "http://mobile.iliangcang.com/goods/goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=";
     public static final String TYPE_HOME_END_URL = "&sig=3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0";
@@ -187,5 +186,10 @@ public class NetRequestSite {
     public static final String TYPE_PARENT_FROEPART_URL = "http://mobile.iliangcang.com/goods/goodsList?app_key=Android&count=10&list_id=6&page=";
     public static final String TYPE_PARENT_END_URL = "&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0";
     public static final String PARENT_URL = TYPE_PARENT_FROEPART_URL + PAGE + TYPE_PARENT_END_URL;
+
+    //商品详情页面
+    public static final String COMMODITY_DERAILS_FROEPART_URL = "http://mobile.iliangcang.com/goods/goodsDetail?app_key=Android&goods_id=";
+    public static final String COMMODITY_DERAILS_END_URL = "&sig=BF287AF953103F390674E73DDA18CFD8%7C639843030233268&v=1.0";
+
 
 }

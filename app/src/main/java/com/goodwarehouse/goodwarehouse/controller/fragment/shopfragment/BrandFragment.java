@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
+import com.goodwarehouse.goodwarehouse.bean.BreanInfoBean;
 import com.goodwarehouse.goodwarehouse.bean.ShopBrandBean;
 import com.goodwarehouse.goodwarehouse.controller.activity.BrandDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.BrandAdapter;
@@ -39,7 +40,11 @@ public class BrandFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(context, BrandDetailsActivity.class);
-                intent.putExtra(BRANDBEAN, items.get(i));
+                int brand_id = items.get(i).getBrand_id();
+                String brand_name = items.get(i).getBrand_name();
+                String brand_logo = items.get(i).getBrand_logo();
+                BreanInfoBean breanInfoBean = new BreanInfoBean(brand_id, brand_name, brand_logo);
+                intent.putExtra(BRANDBEAN, breanInfoBean);
                 context.startActivity(intent);
             }
         });

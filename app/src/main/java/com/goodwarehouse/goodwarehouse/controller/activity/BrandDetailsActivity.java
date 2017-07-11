@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.goodwarehouse.goodwarehouse.bean.BreanInfoBean;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
 import com.goodwarehouse.goodwarehouse.bean.BrandDetailsBean;
+import com.goodwarehouse.goodwarehouse.bean.CommodityDetailsBean;
 import com.goodwarehouse.goodwarehouse.bean.ShopBrandBean;
 import com.goodwarehouse.goodwarehouse.controller.fragment.breadfragment.BrandNarrateFragment;
 import com.goodwarehouse.goodwarehouse.controller.fragment.breadfragment.BrandProductFragment;
@@ -42,11 +44,10 @@ public class BrandDetailsActivity extends BaseActivity implements View.OnClickLi
     @InjectView(R.id.brand_product)
     TextView brandProduct;
     private BrandDetailsBean brandDetailsBean;
-    private Intent intent;
-    private ShopBrandBean.DataBean.ItemsBean itemBean;
     private BrandProductFragment brandProductFragment;
     private BrandNarrateFragment brandNarrateFragment;
     private List<BrandDetailsBean.DataBean.ItemsBean> items;
+    private BreanInfoBean breanInfoBean;
 
     @Override
     public void initTitle() {
@@ -71,9 +72,9 @@ public class BrandDetailsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void initData() {
-        itemBean = (ShopBrandBean.DataBean.ItemsBean) getIntent().getSerializableExtra(BrandFragment.BRANDBEAN);
-        HttpUtils.loadCricleImage(BrandDetailsActivity.this, itemBean.getBrand_logo(), brandIocn);
-        brandName.setText(itemBean.getBrand_name());
+        breanInfoBean = (BreanInfoBean) getIntent().getSerializableExtra(BrandFragment.BRANDBEAN);
+        HttpUtils.loadCricleImage(BrandDetailsActivity.this, breanInfoBean.getImageUrl(), brandIocn);
+        brandName.setText(breanInfoBean.getName());
         setFragment();
     }
 
@@ -119,7 +120,7 @@ public class BrandDetailsActivity extends BaseActivity implements View.OnClickLi
         tv.setBackgroundColor(Color.WHITE);
     }
 
-    public ShopBrandBean.DataBean.ItemsBean getItembean() {
-        return itemBean;
+    public BreanInfoBean getItembean() {
+        return breanInfoBean;
     }
 }

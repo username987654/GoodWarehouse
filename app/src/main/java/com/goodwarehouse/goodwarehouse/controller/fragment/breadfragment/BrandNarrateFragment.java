@@ -53,7 +53,7 @@ public class BrandNarrateFragment extends BaseFragment {
     public void initData() {
         brandDetails = (BrandDetailsActivity) getActivity();
         path = NetRequestSite.BRAND_INFO_FROEPART_URL
-                + brandDetails.getItembean().getBrand_id()
+                + brandDetails.getItembean().getId()
                 + NetRequestSite.BRAND_INFO_END_URL;
 
     }

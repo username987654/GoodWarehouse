@@ -1,9 +1,11 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment.breadfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.alibaba.fastjson.JSON;
@@ -11,6 +13,7 @@ import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.BrandDetailsBean;
 import com.goodwarehouse.goodwarehouse.controller.activity.BrandDetailsActivity;
+import com.goodwarehouse.goodwarehouse.controller.activity.CommodityDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.BrandProductAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
 
@@ -42,14 +45,22 @@ public class BrandProductFragment extends BaseFragment {
 
     @Override
     public void initListener() {
-
+        shopTypeGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String goods_id = items.get(i).getGoods_id();
+                Intent intent = new Intent(context, CommodityDetailsActivity.class);
+                intent.putExtra("goods_id", goods_id);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void initData() {
         BrandDetailsActivity detailsActivity = (BrandDetailsActivity) getActivity();
         path = NetRequestSite.BRAND_INFO_FROEPART_URL
-                + detailsActivity.getItembean().getBrand_id()
+                + detailsActivity.getItembean().getId()
                 + NetRequestSite.BRAND_INFO_END_URL;
 
     }

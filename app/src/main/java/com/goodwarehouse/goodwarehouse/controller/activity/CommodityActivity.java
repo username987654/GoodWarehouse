@@ -63,6 +63,7 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
     private TextView pwPeice4;
     private TextView pwPeice5;
 
+
     @Override
     public void initTitle() {
         titleBack.setVisibility(View.VISIBLE);
@@ -82,7 +83,10 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(CommodityActivity.this, "" + items.get(i).getGoods_name(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CommodityActivity.this, CommodityDetailsActivity.class));
+                Intent intent = new Intent(CommodityActivity.this, CommodityDetailsActivity.class);
+                String goods_id = items.get(i).getGoods_id();
+                intent.putExtra(GOODSID, goods_id);
+                startActivity(intent);
             }
         });
         priceScreen.setOnClickListener(new View.OnClickListener() {

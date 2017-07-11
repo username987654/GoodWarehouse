@@ -2,13 +2,10 @@ package com.goodwarehouse.goodwarehouse.controller.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
