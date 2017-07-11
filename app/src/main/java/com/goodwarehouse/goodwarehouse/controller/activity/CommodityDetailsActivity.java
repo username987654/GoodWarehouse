@@ -161,7 +161,6 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
             boolean i = true;
             @Override
             public void onClick(View view) {
-
                 if (i) {
                     commodityLike.setImageResource(R.drawable.ic_my_wish);
                     i = false;
