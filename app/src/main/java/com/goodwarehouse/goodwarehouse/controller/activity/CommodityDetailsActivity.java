@@ -159,6 +159,7 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
 
         commodityLike.setOnClickListener(new View.OnClickListener() {
             boolean i = true;
+
             @Override
             public void onClick(View view) {
                 if (i) {

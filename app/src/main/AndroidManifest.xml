@@ -21,8 +21,9 @@
         <activity android:name=".controller.activity.CommodityActivity" />
         <activity android:name=".controller.activity.BrandDetailsActivity" />
         <activity android:name=".controller.activity.WebPageActivity" />
-        <activity android:name=".controller.activity.ExpertDetailsActivity"></activity>
-        <activity android:name=".controller.activity.CommodityDetailsActivity"></activity>
+        <activity android:name=".controller.activity.ExpertDetailsActivity" />
+        <activity android:name=".controller.activity.CommodityDetailsActivity" />
+        <activity android:name=".controller.activity.MagazinesActivity"></activity>
     </application>
 
 </manifest>

@@ -40,7 +40,9 @@
     </style>
     <!--TabLayout 样式-->
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabMaxWidth">72dp</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabMode">fixed</item>
         <item name="tabMinWidth">72dp</item>
         <item name="tabIndicatorColor">#FFFFFF</item>
         <item name="tabIndicatorHeight">2dp</item>
