@@ -19,6 +19,7 @@ import android.widget.ViewSwitcher;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.MagazineProductionItemBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.MagazinesActivity;
 import com.goodwarehouse.goodwarehouse.controller.activity.WebPageActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.MagazinesAdapter;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
@@ -68,7 +69,7 @@ public class MagazinesFragment extends BaseFragment {
         rltitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(context, MagazinesActivity.class));
             }
         });
 
