@@ -71,7 +71,7 @@ public class TypeFragment extends BaseFragment {
     public void processData(String response) {
         ShopTypeBean shopTypeInfo = JSON.parseObject(response, ShopTypeBean.class);
         items = shopTypeInfo.getData().getItems();
-        myGridAdabter = new TypeAdabter(context, items);
+        myGridAdabter = new TypeAdabter(context, items,1);
         shopTypeGv.setAdapter(myGridAdabter);
     }
 }

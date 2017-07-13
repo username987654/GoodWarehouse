@@ -14,11 +14,11 @@ import java.util.List;
  * Created by HaoMeng on 2017-07-06.
  */
 
-public abstract class MyBserAdapter<T> extends BaseAdapter {
+public abstract class MyBaseAdapter<T> extends BaseAdapter {
     private final Context context;
     private final List<T> datas;
 
-    public MyBserAdapter(Context context, List<T> datas) {
+    public MyBaseAdapter(Context context, List<T> datas) {
         this.context = context;
         this.datas = datas;
     }

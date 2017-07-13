@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.goodwarehouse.goodwarehouse.R;
 import com.squareup.picasso.Picasso;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -55,5 +56,13 @@ public class HttpUtils {
                 .load(url)
                 .error(R.drawable.bg_topic_favour)
                 .transform(new CircleTransform()).into(iv);
+    }
+
+    public static void GlideArcImage(Context context, String url, ImageView iv, int dp) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.bg_topic_favour)
+                .transform(new GlideRoundTransform(context, dp))
+                .into(iv);
     }
 }

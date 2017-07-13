@@ -28,6 +28,8 @@ public abstract class BaseFragment extends Fragment {
     public static final String PIC_URL = "topic_url";
     public static final String TOPIC_NAME = "topic_name";
     public static final String EXPERTUBEAN = "expertubean";
+    public static final String AUTHOR_ID = "author_id";
+    public static final String ID= "id";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

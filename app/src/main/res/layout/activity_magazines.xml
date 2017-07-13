@@ -1,58 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_magazines"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context="com.goodwarehouse.goodwarehouse.controller.activity.MagazinesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/magazines_rg"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#FCFCFC"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <RadioButton
-                android:layout_weight="1"
-                android:id="@+id/magazines_rb1"
-                android:layout_width="0dp"
+            <RadioGroup
+                android:id="@+id/magazines_rg"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:drawableRight="@drawable/icon_topic_category"
-                android:button="@null" />
+                android:layout_marginTop="10dp"
+                android:background="#FCFCFC"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:layout_weight="1"
-                android:id="@+id/magazines_rb2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:drawableLeft="@drawable/icon_topic_author"
-                android:button="@null" />
+                <RadioButton
+                    android:id="@+id/magazines_rb1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableRight="@drawable/icon_topic_category" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/magazines_rb2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/icon_topic_author" />
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/magazines_tab"
-            style="@style/MyCustomTabLayout2"
+            </RadioGroup>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/magazines_tab"
+                style="@style/MyCustomTabLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/magazines_vp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"></android.support.v4.view.ViewPager>
     </LinearLayout>
 
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/magazines_vp"
+    <LinearLayout
+        android:id="@+id/ll_magazines_close"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="杂志"
+            android:textColor="@color/text"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/abc_ic_go_search_down" />
+    </LinearLayout>
+</RelativeLayout>

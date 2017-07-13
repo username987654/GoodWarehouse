@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.bean.ShopSpecialBean;
-import com.goodwarehouse.goodwarehouse.controller.adapter.baseadapter.MyBserAdapter;
+import com.goodwarehouse.goodwarehouse.controller.adapter.baseadapter.MyBaseAdapter;
 import com.goodwarehouse.goodwarehouse.controller.adapter.holder.BaseViewHolder;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 
@@ -19,7 +19,7 @@ import butterknife.InjectView;
  * Created by HaoMeng on 2017-07-06.
  */
 
-public class SpecialAdapter extends MyBserAdapter<ShopSpecialBean.DataBean.ItemsBean> {
+public class SpecialAdapter extends MyBaseAdapter<ShopSpecialBean.DataBean.ItemsBean> {
     private final Context context;
 
     public SpecialAdapter(Context context, List<ShopSpecialBean.DataBean.ItemsBean> datas) {

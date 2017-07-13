@@ -1,5 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment.expertfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.bean.ExpertAttentionFansBean;
 import com.goodwarehouse.goodwarehouse.bean.ExpertLikeCommendBean;
+import com.goodwarehouse.goodwarehouse.controller.activity.ExpertCommodityActivity;
 import com.goodwarehouse.goodwarehouse.controller.activity.ExpertDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.adapter.ExpertLikeCommendAdapter;
 
@@ -36,6 +38,8 @@ public class ExpertLikeFragment extends BaseFragment {
     private String followed_count;
     private String following_count;
     ExpertDetailsActivity expertDetails;
+    private ExpertLikeCommendAdapter adapter;
+
 
     public String getLike_count() {
         return like_count;
@@ -86,12 +90,23 @@ public class ExpertLikeFragment extends BaseFragment {
     public void processData(String response) {
         super.processData(response);
         Log.e("response", response);
-        ExpertLikeCommendBean expertLikeCommendBean = JSON.parseObject(response, ExpertLikeCommendBean.class);
+        final ExpertLikeCommendBean expertLikeCommendBean = JSON.parseObject(response, ExpertLikeCommendBean.class);
         countData(expertLikeCommendBean.getData().getItems());
         List<ExpertLikeCommendBean.DataBean.ItemsBean.GoodsBean> goods = expertLikeCommendBean.getData().getItems().getGoods();
-        ExpertLikeCommendAdapter adapter = new ExpertLikeCommendAdapter(context, goods);
+        adapter = new ExpertLikeCommendAdapter(context, goods);
         expertDetailsRv.setAdapter(adapter);
         expertDetailsRv.setLayoutManager(new GridLayoutManager(context, 2));
+        adapter.setOnItemClickListener(new ExpertLikeCommendAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                ExpertLikeCommendBean.DataBean.ItemsBean items = expertLikeCommendBean.getData().getItems();
+                String goods_id = items.getGoods().get(position).getGoods_id();
+                Intent intent = new Intent(context, ExpertCommodityActivity.class);
+                intent.putExtra(ID, goods_id);
+                Log.e("AAAAAAA", goods_id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void countData(ExpertLikeCommendBean.DataBean.ItemsBean expertLikeCommendBean) {

@@ -6,57 +6,70 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
-import com.goodwarehouse.goodwarehouse.bean.ExpertLikeCommendBean;
+import com.goodwarehouse.goodwarehouse.bean.MagazineProductionItemBean;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
- * Created by HaoMeng on 2017-07-09.
+ * Created by HaoMeng on 2017-07-13.
  */
 
-public class ExpertLikeCommendAdapter extends RecyclerView.Adapter<ExpertLikeCommendAdapter.MyViewHolder> {
+public class MagazinesAuthorAdapter extends RecyclerView.Adapter<MagazinesAuthorAdapter.MyViewHolder> {
     private final Context context;
-    private final List<ExpertLikeCommendBean.DataBean.ItemsBean.GoodsBean> datas;
+    private final ArrayList<MagazineProductionItemBean> beanitems;
 
 
-    public ExpertLikeCommendAdapter(Context context, List<ExpertLikeCommendBean.DataBean.ItemsBean.GoodsBean> goods) {
+    public MagazinesAuthorAdapter(Context context, ArrayList<MagazineProductionItemBean> beanitems) {
         this.context = context;
-        this.datas = goods;
+        this.beanitems = beanitems;
     }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_expert_details_type, null));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_magazines_author, parent, false));
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String goods_image = datas.get(position).getGoods_image();
-        HttpUtils.loadImage(context, goods_image, holder.expertDetailsImage);
+        MagazineProductionItemBean itemBean = beanitems.get(position);
+        String cover_img_new = itemBean.getCover_img_new();
+        HttpUtils.loadImage(context, cover_img_new, holder.magazinesAuthorImage);
+        String topic_name = itemBean.getTopic_name();
+        holder.magazinesAuthorContent.setText(topic_name);
+        String cat_name = itemBean.getCat_name();
+        holder.magazinesAuthorType.setText(cat_name);
+
     }
 
     @Override
     public int getItemCount() {
-        return datas == null ? 0 : datas.size();
+        return beanitems.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.expert_details_image)
-        ImageView expertDetailsImage;
+        @InjectView(R.id.magazines_author_image)
+        ImageView magazinesAuthorImage;
+        @InjectView(R.id.magazines_author_content)
+        TextView magazinesAuthorContent;
+        @InjectView(R.id.magazines_author_type)
+        TextView magazinesAuthorType;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
-            expertDetailsImage.setOnClickListener(new View.OnClickListener() {
+            magazinesAuthorImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onItemClickListener.onItemClick(getAdapterPosition());
+
                 }
             });
         }
@@ -66,9 +79,7 @@ public class ExpertLikeCommendAdapter extends RecyclerView.Adapter<ExpertLikeCom
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
-
     }
-
 
     public interface OnItemClickListener {
         void onItemClick(int position);

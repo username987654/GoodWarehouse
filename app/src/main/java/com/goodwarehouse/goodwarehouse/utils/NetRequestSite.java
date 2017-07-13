@@ -65,7 +65,14 @@ public class NetRequestSite {
     public static final String EXPERT_JOIN_FROEPART_URL = "http://mobile.iliangcang.com/user/masterList?app_key=Android&count=18&orderby=action_time&page=";
     public static final String EXPERT_JOIN_END_URL = "&sig=79F01B94B8EBEFAC8EEB344EE2B20AA2%7C383889010803768&v=1.0";
     public static final String EXPERT_JOIN_URL = EXPERT_JOIN_FROEPART_URL + PAGE + EXPERT_JOIN_END_URL;
-
+    //达人详情页面推荐购头部
+    public static final String EXPERT_RECOMMEND_DTAILS_TITLE = "http://mobile.iliangcang.com/goods/goodsDetail?app_key=Android&goods_id=";
+    //达人详情页面推荐购尾部
+    public static final String EXPERT_RECOMMEND_DTAILS_END = "&sig=0B35CA55BE2F2CF1D7C2C3199C31E3F1%7C914100010288853&v=1.0";
+    //达人详情页面推荐购评论头部
+    public static final String EXPERT_RECOMMEND_DTAILS_COMMENT_TITLE = "http://mobile.iliangcang.com/comments/goods?app_key=Android&count=3&goods_id=";
+    //达人详情页面推荐购评论尾部
+    public static final String EXPERT_RECOMMEND_DTAILS_COMMENT_END = "&page=1&sig=0B35CA55BE2F2CF1D7C2C3199C31E3F1%7C914100010288853&v=1.0";
 
     //商店 - 分类 - 家居
     public static final String TYPE_HOME_FROEPART_URL = "http://mobile.iliangcang.com/goods/goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=";
@@ -194,5 +201,10 @@ public class NetRequestSite {
 
     //  杂志接口
     public static final String MAGAZINE_URL = "http://mobile.iliangcang.com/topic/magazineList?app_key=Android&author_id=1&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
+    //  杂志 - 作者
+    public static final String MAGAZINE_AUTHOR_URL = "http://mobile.iliangcang.com/topic/magazineAuthorList?app_key=Android&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
+    //杂志 - 作者 - Item
+    public static final String MAGAZINE_AUTHOR_FROEPART_URL = "http://mobile.iliangcang.com/topic/magazineList?app_key=Android&author_id=";
+    public static final String MAGAZINE_AUTHOR_END_URL = "&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
 
 }
