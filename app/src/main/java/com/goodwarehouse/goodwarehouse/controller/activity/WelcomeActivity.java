@@ -60,7 +60,6 @@ public class WelcomeActivity extends BaseActivity {
                                                    boolean isFirstResource) {
 
                         int durcation = 0;
-
                         GifDrawable drawable = (GifDrawable) resource;
                         GifDecoder decoder = drawable.getDecoder();
                         for (int i = 0; i < drawable.getFrameCount(); i++) {

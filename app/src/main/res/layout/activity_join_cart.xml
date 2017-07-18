@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_join_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.goodwarehouse.goodwarehouse.controller.activity.JoinCartActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/background">
+
+            <ImageButton
+                android:id="@+id/commodity_cart_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/chahao" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/commodity_cart_picture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_topic_favour" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/commodity_join_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="商品名称"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/commodity_join_introduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="商品介绍"
+                android:textColor="@color/text"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/commodity_join_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:text="￥:78.00"
+                android:textColor="#6F98C3" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="25dp"
+                android:background="#F0F0F0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="容量"
+                android:textColor="@color/text" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/commodity_join_model_model"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"></com.zhy.view.flowlayout.TagFlowLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="数量"
+                android:textColor="@color/text" />
+
+            <com.goodwarehouse.goodwarehouse.view.AddSubView
+                android:id="@+id/commodiity_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                app:maxValue="12"
+                app:minValue="1"
+                app:numberAddBackground="@drawable/add"
+                app:numberSubBackground="@drawable/minus"
+                app:value="1"></com.goodwarehouse.goodwarehouse.view.AddSubView>
+
+            <Button
+                android:id="@+id/btn_comfort"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#2EA2E5"
+                android:text="确定"
+                android:textColor="@color/text" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

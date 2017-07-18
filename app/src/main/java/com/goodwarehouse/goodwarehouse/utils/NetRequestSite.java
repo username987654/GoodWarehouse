@@ -207,4 +207,9 @@ public class NetRequestSite {
     public static final String MAGAZINE_AUTHOR_FROEPART_URL = "http://mobile.iliangcang.com/topic/magazineList?app_key=Android&author_id=";
     public static final String MAGAZINE_AUTHOR_END_URL = "&sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0";
 
+    /*
+    * 段子
+    * */
+    public static final String CONNTATION_TEXT_URL = "http://s.budejie.com/topic/tag-topic/64/hot/budejie-android-6.6.3/0-20.json";
+
 }

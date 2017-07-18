@@ -18,6 +18,11 @@ public abstract class BaseViewHolder<T> {
         rootView = initView();
         ButterKnife.inject(this, rootView);
         rootView.setTag(this);
+
+    }
+
+    public void setList() {
+
     }
 
 

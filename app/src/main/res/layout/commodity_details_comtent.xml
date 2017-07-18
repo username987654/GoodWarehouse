@@ -20,6 +20,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="360dp" />
 
+            <LinearLayout
+                android:id="@+id/ll_indicatepoint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"></LinearLayout>
+
             <ImageView
                 android:id="@+id/commodity_statusbar"
                 android:layout_width="wrap_content"

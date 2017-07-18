@@ -25,7 +25,11 @@
         <activity android:name=".controller.activity.CommodityDetailsActivity" />
         <activity android:name=".controller.activity.MagazinesActivity" />
         <activity android:name=".controller.activity.MagazinesAuthorActivity" />
-        <activity android:name=".controller.activity.ExpertCommodityActivity"></activity>
+        <activity android:name=".controller.activity.ExpertCommodityActivity" />
+        <activity
+            android:name=".controller.activity.JoinCartActivity"
+            android:theme="@style/Transparent" />
+        <activity android:name=".controller.activity.CartActivity"></activity>
     </application>
 
 </manifest>

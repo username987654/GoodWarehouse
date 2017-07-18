@@ -2,9 +2,11 @@ package com.goodwarehouse.goodwarehouse.controller.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.goodwarehouse.goodwarehouse.controller.activity.CommodityDetailsActivity;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;

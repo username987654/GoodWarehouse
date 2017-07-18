@@ -56,7 +56,6 @@ public class ShopFragment extends BaseFragment {
     @Override
     public void initListener() {
 
-
     }
 
     @Override
@@ -82,6 +81,7 @@ public class ShopFragment extends BaseFragment {
         fragments.add(new SpecialFragment());
         fragments.add(new GiftFragment());
         fmShopVp.setAdapter(new ShopAdapter(getFragmentManager()));
+        fmShopVp.setCurrentItem(2);
     }
 
     @Override

@@ -52,3 +52,4 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
 
     public abstract BaseViewHolder getHolder();
 }
+

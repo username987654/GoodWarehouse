@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
 import com.goodwarehouse.goodwarehouse.bean.BreanInfoBean;
+import com.goodwarehouse.goodwarehouse.bean.CommodityCartData;
 import com.goodwarehouse.goodwarehouse.bean.CommodityDetailsBean;
 import com.goodwarehouse.goodwarehouse.controller.adapter.MyViewPagerAdapetr;
 import com.goodwarehouse.goodwarehouse.controller.fragment.commodityfragment.BuyerReadingFragment;
@@ -97,11 +98,16 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
     LinearLayout breanInfo;
     @InjectView(R.id.linear_switch)
     LinearLayout linearSwitch;
+    @InjectView(R.id.ll_indicatepoint)
+    LinearLayout llIndicatepoint;
     private BreanInfoBean breanInfoBean;
     private CommodityDetailsBean.DataBean.ItemsBean.GoodGuideBean good_guide;
     private List<CommodityDetailsBean.DataBean.ItemsBean.GoodsInfoBean> goods_info;
     private CommodityDetailsBean.DataBean.ItemsBean items;
     Bundle bundle = new Bundle();
+    private List<String> imagesItems;
+    private int recordPosition = 0;
+    private CommodityDetailsBean commodityDetailsBean;
 
     @Override
     public void initTitle() {
@@ -127,7 +133,8 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         commodityCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CommodityDetailsActivity.this, "购物车", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CommodityDetailsActivity.this, "购物车", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CommodityDetailsActivity.this, CartActivity.class));
             }
         });
         commodityService.setOnClickListener(new View.OnClickListener() {
@@ -139,15 +146,39 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         commodityReleaseCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CommodityDetailsActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CommodityDetailsActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
+                String name = commodityDetailsBean.getData().getItems().getOwner_name();
+                String image = commodityDetailsBean.getData().getItems().getGoods_image();
+                String goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+                String discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+                String price = commodityDetailsBean.getData().getItems().getPrice();
+                String prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+                List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = commodityDetailsBean.getData().getItems().getSku_info().get(0).getAttrList();
+                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, attrList);
+                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+                intent.putExtra("CARTDATA", cartData);
+                startActivity(intent);
             }
         });
         commodityPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CommodityDetailsActivity.this, "直接加入购物车", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CommodityDetailsActivity.this, "直接加入购物车", Toast.LENGTH_SHORT).show();
+                String name = commodityDetailsBean.getData().getItems().getOwner_name();
+                String image = commodityDetailsBean.getData().getItems().getGoods_image();
+                String goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+                String discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+                String price = commodityDetailsBean.getData().getItems().getPrice();
+                String prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+                List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = commodityDetailsBean.getData().getItems().getSku_info().get(0).getAttrList();
+                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, attrList);
+                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+                intent.putExtra("CARTDATA", cartData);
+                startActivity(intent);
+
             }
         });
+
         breanInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,12 +204,31 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         });
         brandNarrate.setOnClickListener(this);
         brandProduct.setOnClickListener(this);
+        commodityVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                llIndicatepoint.getChildAt(recordPosition).setEnabled(true);
+                llIndicatepoint.getChildAt(position).setEnabled(false);
+                recordPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
     public void initData() {
         String goods_id = getIntent().getStringExtra(GOODSID);
         String url = NetRequestSite.COMMODITY_DERAILS_FROEPART_URL + goods_id + NetRequestSite.COMMODITY_DERAILS_END_URL;
+        Log.e("SSSSSSS", url);
         HttpUtils.HttpNet(url, new HttpUtils.onNetRequestContent() {
             @Override
             public void onError(String content) {
@@ -195,7 +245,7 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
     }
 
     private void processData(String response) {
-        CommodityDetailsBean commodityDetailsBean = JSON.parseObject(response, CommodityDetailsBean.class);
+        commodityDetailsBean = JSON.parseObject(response, CommodityDetailsBean.class);
         String brand_name = commodityDetailsBean.getData().getItems().getBrand_info().getBrand_name();
         commodityBreandName.setText(brand_name);
         String goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
@@ -204,7 +254,6 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         commodityEffect.setText(promotion_note);
         String like_count = commodityDetailsBean.getData().getItems().getLike_count();
         commdoityLikeCount.setText(like_count);
-
         String discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
         String price = commodityDetailsBean.getData().getItems().getPrice();
         if (!TextUtils.isEmpty(discount_price)) {
@@ -222,9 +271,10 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         } else {
             commodityStatusbar.setVisibility(View.GONE);
         }
-        List<String> images_item = commodityDetailsBean.getData().getItems().getImages_item();
-        MyViewPagerAdapetr pagerAdapetr = new MyViewPagerAdapetr(CommodityDetailsActivity.this, images_item);
+        imagesItems = commodityDetailsBean.getData().getItems().getImages_item();
+        MyViewPagerAdapetr pagerAdapetr = new MyViewPagerAdapetr(CommodityDetailsActivity.this, imagesItems);
         commodityVp.setAdapter(pagerAdapetr);
+
         String headimg = commodityDetailsBean.getData().getItems().getHeadimg();
         HttpUtils.loadImage(this, headimg, brandHead);
         String owner_name = commodityDetailsBean.getData().getItems().getOwner_name();
@@ -238,7 +288,25 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         bundle.putSerializable("items", items);
         buyerReading.setArguments(bundle);
         showFragment(buyerReading);
+        setPoint();
     }
+
+    private void setPoint() {
+        for (int i = 0; i < imagesItems.size(); i++) {
+            ImageView imageView = new ImageView(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            imageView.setLayoutParams(params);
+            imageView.setImageResource(R.drawable.point_selector);
+            if (i == 0) {
+                imageView.setEnabled(false);
+            } else {
+                imageView.setEnabled(true);
+                params.leftMargin = 10;
+            }
+            llIndicatepoint.addView(imageView);
+        }
+    }
+
 
     @Override
     public int getLayoutId() {
@@ -281,10 +349,10 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         tv.setBackgroundColor(Color.WHITE);
     }
 
+
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.commodity_details_fragmemt, fragment).commit();
     }
-
 }
