@@ -3,6 +3,7 @@ package com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -58,60 +59,62 @@ public class HomePageFragment extends BaseFragment {
         super.processData(response);
         ShopHomePageBean shopHomePageBean = JSON.parseObject(response, ShopHomePageBean.class);
         list = shopHomePageBean.getData().getItems().getList();
-        homePageAdapter = new HomePageAdapter(context, list);
-        shopHomepageRv.setAdapter(homePageAdapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        shopHomepageRv.setLayoutManager(layoutManager);
-        homePageAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(View view, final int position, int type) {
-                Intent intent = null;
-                if (type == 1) {
-                    topic_name = list.get(position).getOne().getTopic_name();
-                    topic_url = list.get(position).getOne().getTopic_url();
-                    startWebActivity(topic_name, topic_url);
-                } else if (type == 2) {
-                    switch (view.getId()) {
-                        case R.id.homepage_type2_left_iv:
-                            topic_name = list.get(position).getOne().getTopic_name();
-                            topic_url = list.get(position).getOne().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
-                        case R.id.homepage_type2_right_iv:
-                            topic_name = list.get(position).getTwo().getTopic_name();
-                            topic_url = list.get(position).getTwo().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
-                    }
-                } else if (type == 3) {
 
-                } else if (type == 4) {
-                    switch (view.getId()) {
-                        case R.id.homepage_type4_left1:
-                            topic_name = list.get(position).getOne().getTopic_name();
-                            topic_url = list.get(position).getOne().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
-                        case R.id.homepage_type4_left2:
-                            topic_name = list.get(position).getTwo().getTopic_name();
-                            topic_url = list.get(position).getTwo().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
-                        case R.id.homepage_type4_right1:
-                            topic_name = list.get(position).getThree().getTopic_name();
-                            topic_url = list.get(position).getThree().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
-                        case R.id.homepage_type4_right2:
-                            topic_name = list.get(position).getFour().getTopic_name();
-                            topic_url = list.get(position).getFour().getTopic_url();
-                            startWebActivity(topic_name, topic_url);
-                            break;
+            homePageAdapter = new HomePageAdapter(context, list);
+            shopHomepageRv.setAdapter(homePageAdapter);
+
+            LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+            shopHomepageRv.setLayoutManager(layoutManager);
+            homePageAdapter.setOnItemClickListener(new HomePageAdapter.OnItemClickListener() {
+                @Override
+                public void onClick(View view, final int position, int type) {
+                    Intent intent = null;
+                    if (type == 1) {
+                        topic_name = list.get(position).getOne().getTopic_name();
+                        topic_url = list.get(position).getOne().getTopic_url();
+                        startWebActivity(topic_name, topic_url);
+                    } else if (type == 2) {
+                        switch (view.getId()) {
+                            case R.id.homepage_type2_left_iv:
+                                topic_name = list.get(position).getOne().getTopic_name();
+                                topic_url = list.get(position).getOne().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                            case R.id.homepage_type2_right_iv:
+                                topic_name = list.get(position).getTwo().getTopic_name();
+                                topic_url = list.get(position).getTwo().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                        }
+                    } else if (type == 3) {
+
+                    } else if (type == 4) {
+                        switch (view.getId()) {
+                            case R.id.homepage_type4_left1:
+                                topic_name = list.get(position).getOne().getTopic_name();
+                                topic_url = list.get(position).getOne().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                            case R.id.homepage_type4_left2:
+                                topic_name = list.get(position).getTwo().getTopic_name();
+                                topic_url = list.get(position).getTwo().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                            case R.id.homepage_type4_right1:
+                                topic_name = list.get(position).getThree().getTopic_name();
+                                topic_url = list.get(position).getThree().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                            case R.id.homepage_type4_right2:
+                                topic_name = list.get(position).getFour().getTopic_name();
+                                topic_url = list.get(position).getFour().getTopic_url();
+                                startWebActivity(topic_name, topic_url);
+                                break;
+                        }
                     }
+
                 }
-
-            }
-        });
+            });
 
     }
 

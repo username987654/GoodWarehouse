@@ -63,8 +63,11 @@ public class SpecialFragment extends BaseFragment {
     public void processData(String response) {
         ShopSpecialBean shopSpecialBean = JSON.parseObject(response, ShopSpecialBean.class);
         items = shopSpecialBean.getData().getItems();
-        specialAdapter = new SpecialAdapter(context, items);
-        shopSpecialLv.setAdapter(specialAdapter);
+        if (items.size() > 0 && items != null) {
+            specialAdapter = new SpecialAdapter(context, items);
+            shopSpecialLv.setAdapter(specialAdapter);
+
+        }
     }
 
     @Override

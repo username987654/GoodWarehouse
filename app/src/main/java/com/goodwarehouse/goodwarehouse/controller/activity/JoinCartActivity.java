@@ -1,13 +1,18 @@
 package com.goodwarehouse.goodwarehouse.controller.activity;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +20,21 @@ import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
 import com.goodwarehouse.goodwarehouse.bean.CommodityCartData;
 import com.goodwarehouse.goodwarehouse.bean.CommodityDetailsBean;
+import com.goodwarehouse.goodwarehouse.controller.adapter.CartListAdapter;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 import com.goodwarehouse.goodwarehouse.view.AddSubView;
+import com.goodwarehouse.goodwarehouse.view.MyListView;
 import com.zhy.view.flowlayout.FlowLayout;
-import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import static android.R.attr.id;
 
 public class JoinCartActivity extends BaseActivity {
 
@@ -38,39 +48,21 @@ public class JoinCartActivity extends BaseActivity {
     TextView commodityJoinIntroduce;
     @InjectView(R.id.commodity_join_price)
     TextView commodityJoinPrice;
-
     @InjectView(R.id.commodiity_num)
     AddSubView commodiityNum;
+    @InjectView(R.id.btn_comfort)
+    Button btnComfort;
+    @InjectView(R.id.cart_commodity_list)
+    MyListView cartCommodityList;
+    @InjectView(R.id.linear_list)
+    LinearLayout linearList;
     @InjectView(R.id.activity_join_cart)
-    LinearLayout activityJoinCart;
-    @InjectView(R.id.commodity_join_model_model)
-    TagFlowLayout commodityJoinModelModel;
+    RelativeLayout activityJoinCart;
     private CommodityCartData cartData;
-    private String[] names;
-    private TextView tv;
+
 
     @Override
     public void initListener() {
-        commodityCartBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        commodityJoinModelModel.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-            @Override
-            public boolean onTagClick(View view, int position, FlowLayout parent) {
-                Toast.makeText(JoinCartActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                TextView tv1 = (TextView) view;
-                view.setBackgroundColor(Color.parseColor("#64B4E0"));
-                if (tv != null) {
-                    tv.setBackgroundColor(Color.parseColor("#464343"));
-                }
-                tv = (TextView) view;
-
-                return false;
-            }
-        });
 
     }
 
@@ -82,36 +74,36 @@ public class JoinCartActivity extends BaseActivity {
         commodityJoinName.setText(cartData.getName());
         commodityJoinIntroduce.setText(cartData.getIntroduce());
         commodityJoinPrice.setText("￥" + cartData.getPrice());
-        List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> arrtList = cartData.getArrtList();
-        names = new String[arrtList.size()];
-        for (int i = 0; i < arrtList.size(); i++) {
-            names[i] = arrtList.get(i).getAttr_name();
-        }
+        final List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuInfos = cartData.getSkuInfoBean();
+        final CartListAdapter cartListAdapter = new CartListAdapter(this, skuInfos);
+        cartCommodityList.setAdapter(cartListAdapter);
+        setListViewHeightBasedOnChildren(cartCommodityList);
+        cartListAdapter.setOnTagFlowClickListener(new CartListAdapter.OnTagFlowClickListener() {
 
-        setTagFlow(names);
-
-    }
-
-    private void setTagFlow(String[] names) {
-        commodityJoinModelModel.setAdapter(new TagAdapter<String>(names) {
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                final TextView tv = new TextView(JoinCartActivity.this);
-                tv.setTextSize(15);
-                tv.setTextColor(Color.WHITE);
-                tv.setPadding(10, 10, 10, 10);
-                //获取shape布局的实例对象
-                Drawable drawable = getResources().getDrawable(R.drawable.hot_shape);
-                tv.setBackgroundDrawable(drawable);
-                //获取textView的背景
-                final GradientDrawable gd = (GradientDrawable) tv.getBackground();
-                //设置背景色
-                gd.setColor(Color.parseColor("#464343"));
-                tv.setText(s);
+            public void onTagFlowClick(View view, int position, FlowLayout parent, int i, List<TagFlowLayout> tagFlowLayouts) {
+                List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = skuInfos.get(i).getAttrList();
+                switch (i) {
+                    case 0:
 
-                return tv;
+                        CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean attrListBean1 = attrList.get(position);
+                        String img_path = attrListBean1.getImg_path();
+                        if (!TextUtils.isEmpty(img_path)) {
+                            HttpUtils.loadImage(JoinCartActivity.this, img_path, commodityCartPicture);
+                        }
+                        CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean skuInvBean = cartData.getSkuInvBeen().get(position);
+                        String price = skuInvBean.getPrice();
+                        if (!TextUtils.isEmpty(price)) {
+                            commodityJoinPrice.setText("￥" + price);
+                        }
+                        break;
+
+                }
             }
+
+
         });
+
     }
 
 
@@ -120,4 +112,41 @@ public class JoinCartActivity extends BaseActivity {
         return R.layout.activity_join_cart;
     }
 
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+
+        // 获取ListView对应的Adapter
+
+        ListAdapter listAdapter = listView.getAdapter();
+
+        if (listAdapter == null) {
+
+            return;
+
+        }
+
+        int totalHeight = 0;
+
+        for (int i = 0; i < listAdapter.getCount(); i++) { // listAdapter.getCount()返回数据项的数目
+
+            View listItem = listAdapter.getView(i, null, listView);
+
+            listItem.measure(0, 0); // 计算子项View 的宽高
+
+            totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+
+        // params.height最后得到整个ListView完整显示需要的高度
+
+        listView.setLayoutParams(params);
+
+    }
 }
+

@@ -108,6 +108,14 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
     private List<String> imagesItems;
     private int recordPosition = 0;
     private CommodityDetailsBean commodityDetailsBean;
+    private String name;
+    private String image;
+    private String goods_name;
+    private String price;
+    private String prices;
+    public String discount_price;
+    private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuinfobean;
+    private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> sku_inv;
 
     @Override
     public void initTitle() {
@@ -144,17 +152,20 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
             }
         });
         commodityReleaseCart.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
 //                Toast.makeText(CommodityDetailsActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
-                String name = commodityDetailsBean.getData().getItems().getOwner_name();
-                String image = commodityDetailsBean.getData().getItems().getGoods_image();
-                String goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
-                String discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
-                String price = commodityDetailsBean.getData().getItems().getPrice();
-                String prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
-                List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = commodityDetailsBean.getData().getItems().getSku_info().get(0).getAttrList();
-                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, attrList);
+                name = commodityDetailsBean.getData().getItems().getOwner_name();
+                image = commodityDetailsBean.getData().getItems().getGoods_image();
+                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+                price = commodityDetailsBean.getData().getItems().getPrice();
+                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
+                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
+                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
                 Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
                 intent.putExtra("CARTDATA", cartData);
                 startActivity(intent);
@@ -164,14 +175,15 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
             @Override
             public void onClick(View view) {
 //                Toast.makeText(CommodityDetailsActivity.this, "直接加入购物车", Toast.LENGTH_SHORT).show();
-                String name = commodityDetailsBean.getData().getItems().getOwner_name();
-                String image = commodityDetailsBean.getData().getItems().getGoods_image();
-                String goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
-                String discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
-                String price = commodityDetailsBean.getData().getItems().getPrice();
-                String prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
-                List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> attrList = commodityDetailsBean.getData().getItems().getSku_info().get(0).getAttrList();
-                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, attrList);
+                name = commodityDetailsBean.getData().getItems().getOwner_name();
+                image = commodityDetailsBean.getData().getItems().getGoods_image();
+                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+                price = commodityDetailsBean.getData().getItems().getPrice();
+                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
+                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
+                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
                 Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
                 intent.putExtra("CARTDATA", cartData);
                 startActivity(intent);

@@ -55,9 +55,11 @@ public class BrandFragment extends BaseFragment {
     public void processData(String response) {
         ShopBrandBean shopBrandBean = JSON.parseObject(response, ShopBrandBean.class);
         List<ShopBrandBean.DataBean.ItemsBean> items = shopBrandBean.getData().getItems();
-        this.items = shopBrandBean.getData().getItems();
-        BrandAdapter brandAdapter = new BrandAdapter(context, this.items);
-        shopBrandLv.setAdapter(brandAdapter);
+        if (items != null && items.size() > 0) {
+            this.items = shopBrandBean.getData().getItems();
+            BrandAdapter brandAdapter = new BrandAdapter(context, this.items);
+            shopBrandLv.setAdapter(brandAdapter);
+        }
     }
 
     @Override

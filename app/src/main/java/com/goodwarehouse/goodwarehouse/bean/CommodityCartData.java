@@ -13,19 +13,25 @@ public class CommodityCartData implements Serializable {
     private String image;
     private String introduce;
     private String price;
-    private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> arrtList;
+    private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuinfobean;
+    private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> skuInvBeen;
+
 
     public CommodityCartData(String name,
                              String image,
                              String introduce,
                              String price,
-                             List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> arrtList) {
+                             List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuinfobean,
+                             List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> skuInvBeen) {
+
         this.name = name;
         this.image = image;
         this.introduce = introduce;
         this.price = price;
-        this.arrtList = arrtList;
+        this.skuinfobean = skuinfobean;
+        this.skuInvBeen = skuInvBeen;
     }
+
 
     public String getName() {
         return name;
@@ -59,11 +65,19 @@ public class CommodityCartData implements Serializable {
         this.price = price;
     }
 
-    public List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> getArrtList() {
-        return arrtList;
+    public List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> getSkuInfoBean() {
+        return skuinfobean;
     }
 
-    public void setSkuInfos(List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean> arrtList) {
-        this.arrtList = arrtList;
+    public void setSkuInfos(List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuinfobean) {
+        this.skuinfobean = skuinfobean;
+    }
+
+    public List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> getSkuInvBeen() {
+        return skuInvBeen;
+    }
+
+    public void setSkuInvBeen(List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> skuInvBeen) {
+        this.skuInvBeen = skuInvBeen;
     }
 }
