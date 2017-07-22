@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/dialog_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_cancel_black" />
+    </RelativeLayout>
+
+    <View
+        android:background="#BABABA"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="确认删除此物品?"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/dialog_affirm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#BABABA"
+        android:gravity="center"
+        android:text="确认" />
+</LinearLayout>

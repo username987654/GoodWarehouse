@@ -117,6 +117,7 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
     private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInfoBean> skuinfobean;
     private List<CommodityDetailsBean.DataBean.ItemsBean.SkuInvBean> sku_inv;
 
+
     @Override
     public void initTitle() {
         defaultSwitchover(brandNarrate);
@@ -129,7 +130,20 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
         commoditySwitchSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CommodityDetailsActivity.this, "请选择", Toast.LENGTH_SHORT).show();
+                name = commodityDetailsBean.getData().getItems().getOwner_name();
+                image = commodityDetailsBean.getData().getItems().getGoods_image();
+                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+                price = commodityDetailsBean.getData().getItems().getPrice();
+                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
+                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
+                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
+                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+                intent.putExtra(ISADD, SELECT);
+                intent.putExtra("COMMODITY", commodityDetailsBean);
+                intent.putExtra("CARTDATA", cartData);
+                startActivity(intent);
             }
         });
         commodityBack.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +181,8 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
                 sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
                 CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
                 Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+                intent.putExtra(ISADD, JOINCART);
+                intent.putExtra("COMMODITY", commodityDetailsBean);
                 intent.putExtra("CARTDATA", cartData);
                 startActivity(intent);
             }
@@ -185,6 +201,8 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
                 sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
                 CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
                 Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+                intent.putExtra(ISADD, PURCHASE);
+                intent.putExtra("COMMODITY", commodityDetailsBean);
                 intent.putExtra("CARTDATA", cartData);
                 startActivity(intent);
 

@@ -13,6 +13,10 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
     public static final String GOODSID = "goods_id";
+    public static String PURCHASE = "purchase";
+    public static String JOINCART = "joinCart";
+    public static String SELECT = "select";
+    public static String ISADD = "isAdd";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

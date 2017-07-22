@@ -1,5 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.fragment;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
+import com.goodwarehouse.goodwarehouse.controller.activity.CartActivity;
+import com.goodwarehouse.goodwarehouse.controller.activity.CommodityDetailsActivity;
 import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.BrandFragment;
 import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.TypeFragment;
 import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.GiftFragment;
@@ -55,6 +58,12 @@ public class ShopFragment extends BaseFragment {
 
     @Override
     public void initListener() {
+        shopCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, CartActivity.class));
+            }
+        });
 
     }
 

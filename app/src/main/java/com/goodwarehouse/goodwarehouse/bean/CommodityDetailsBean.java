@@ -725,7 +725,9 @@ public class CommodityDetailsBean implements Serializable {
             public static class GoodsInfoBean implements Serializable {
                 /**
                  * type : 1
-                 * content : {"img":"http://imgs-qn.iliangcang.com//ware/ueditor/image/20170615/1497517601881120.jpg","width":661,"height":792,"length":79}
+                 * content :
+                 * {"img":"http://imgs-qn.iliangcang.com//ware/ueditor/image/20170615/1497517601881120.jpg",
+                 * "width":661,"height":792,"length":79}
                  */
 
                 private int type;

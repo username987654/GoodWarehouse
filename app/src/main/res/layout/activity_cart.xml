@@ -6,13 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.goodwarehouse.goodwarehouse.controller.activity.CartActivity">
 
-    <include layout="@layout/titlebar" />
-
-    <ListView
-        android:id="@+id/cart_commodity"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="150dp"></ListView>
+        android:layout_marginBottom="150dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/titlebar" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_commodity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -179,14 +187,27 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/All_selected"
+                    android:id="@+id/All_selected_compile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:button="@null"
-                    android:drawableLeft="@drawable/cart_check_all_bg"
+                    android:drawableLeft="@drawable/cart_checkbox"
                     android:text="全选"
-                    android:textColor="@color/text" />
+                    android:textColor="@color/text"
+                    android:visibility="gone" />
+
+
+                <CheckBox
+                    android:id="@+id/All_selected_accomplish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/cart_checkbox"
+                    android:text="全选"
+                    android:textColor="@color/text"
+                    android:visibility="gone" />
 
 
                 <TextView

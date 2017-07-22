@@ -93,17 +93,55 @@
                     android:background="#F0F0F0" />
 
                 <LinearLayout
-                    android:id="@+id/linear_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <com.goodwarehouse.goodwarehouse.view.MyListView
-                        android:id="@+id/cart_commodity_list"
+                    android:id="@+id/linear_kind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/cart_text1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></com.goodwarehouse.goodwarehouse.view.MyListView>
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="aaaa"
+                        android:textColor="@color/text" />
+
+                    <com.goodwarehouse.goodwarehouse.view.FlowRadioGroup
+                        android:id="@+id/kind_radiogroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"></com.goodwarehouse.goodwarehouse.view.FlowRadioGroup>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/linear_kind2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/cart_text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="aaaa"
+                        android:textColor="@color/text" />
+
+                    <com.goodwarehouse.goodwarehouse.view.FlowRadioGroup
+                        android:id="@+id/kind_radiogroup2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"></com.goodwarehouse.goodwarehouse.view.FlowRadioGroup>
+                </LinearLayout>
+
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
@@ -116,7 +154,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
-                    app:maxValue="12"
                     app:minValue="1"
                     app:numberAddBackground="@drawable/add"
                     app:numberSubBackground="@drawable/minus"
@@ -132,7 +169,35 @@
         android:layout_alignParentBottom="true"
         android:background="#2EA2E5"
         android:text="确定"
-        android:textColor="@color/text" />
+        android:textColor="@color/text"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/cart_is_join_cart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_join_cart"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#0F4B6C"
+            android:text="加入购物车"
+            android:textColor="@color/text" />
+
+        <Button
+            android:id="@+id/btn_purchase"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#2EA2E5"
+            android:text="直接购买"
+            android:textColor="@color/text" />
+    </LinearLayout>
 
 
 </RelativeLayout>

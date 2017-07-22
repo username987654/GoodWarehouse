@@ -98,7 +98,8 @@ public class CommodityActivity extends BaseActivity implements View.OnClickListe
         shopCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CommodityActivity.this, "购物车", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CommodityActivity.this, "购物车", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CommodityActivity.this, CartActivity.class));
             }
         });
 
