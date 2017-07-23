@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.goodwarehouse.goodwarehouse.R;
@@ -24,6 +26,7 @@ import com.goodwarehouse.goodwarehouse.controller.activity.ExpertDetailsActivity
 import com.goodwarehouse.goodwarehouse.controller.adapter.ExpertAdapter;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
+import com.goodwarehouse.goodwarehouse.view.RefreshLayout;
 
 import java.util.List;
 
@@ -49,6 +52,8 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
     GridView fmExpertGv;
     @InjectView(R.id.rl_title)
     RelativeLayout rlTitle;
+    @InjectView(R.id.refresh_expert)
+    RefreshLayout refreshExpert;
     private List<ExpertBean.DataBean.ItemsBean> items;
     private PopupWindow mPopWindow;
     private TextView pwPeiceAll;
@@ -62,6 +67,7 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
     private int expertclick;
     private int expertdefault;
     private int color;
+    private int page = 2;
 
 
     @Override
@@ -75,6 +81,7 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
         items = expertBean.getData().getItems();
         expertAdapter = new ExpertAdapter(context, items);
         fmExpertGv.setAdapter(expertAdapter);
+        refreshExpert.setRefreshing(false);
     }
 
     @Override
@@ -84,6 +91,29 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void initListener() {
+        refreshExpert.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                HttpUtils.HttpNet(url, new HttpUtils.onNetRequestContent() {
+                    @Override
+                    public void onError(String content) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        processData(response);
+                    }
+                });
+            }
+        });
+        refreshExpert.setOnLoadListener(new RefreshLayout.OnLoadListener() {
+
+            @Override
+            public void onLoad() {
+                Toast.makeText(context, "load", Toast.LENGTH_SHORT).show();
+            }
+        });
         fmExpertGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -122,9 +152,7 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
                 }
             }
         });
-
     }
-
     private void showPopupWindow() {
         //设置contentView
         View contentView = LayoutInflater.from(context).inflate(R.layout.expert_popupwindow, null);
@@ -298,13 +326,6 @@ public class ExpertFragment extends BaseFragment implements View.OnClickListener
         tv.setTextColor(Color.WHITE);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.inject(this, rootView);
-        return rootView;
-    }
 
     @Override
     public void onDestroyView() {

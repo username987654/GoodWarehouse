@@ -17,6 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public static String JOINCART = "joinCart";
     public static String SELECT = "select";
     public static String ISADD = "isAdd";
+    public static final String COMMINFO = "comm_info";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

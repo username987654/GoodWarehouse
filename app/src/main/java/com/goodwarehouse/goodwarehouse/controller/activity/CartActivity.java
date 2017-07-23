@@ -1,6 +1,6 @@
 package com.goodwarehouse.goodwarehouse.controller.activity;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,9 +17,9 @@ import com.goodwarehouse.goodwarehouse.bean.CommodityInfo;
 import com.goodwarehouse.goodwarehouse.controller.adapter.CartAdapter;
 import com.goodwarehouse.goodwarehouse.model.dao.CommodityDAO;
 
+import java.io.Serializable;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class CartActivity extends BaseActivity {
@@ -120,6 +120,16 @@ public class CartActivity extends BaseActivity {
                 boolean checked = AllSelectedCompile.isChecked();
                 cartAdapter.checkAll_none(checked);
                 cartAdapter.getTotalPrice();
+            }
+        });
+        settleAccounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<CommodityInfo> commodityInfos = cartAdapter.getcommodityInfo();
+                String name = commodityInfos.get(0).getCommName();
+                Intent intent = new Intent(CartActivity.this, OrderInfoActivity.class);
+                intent.putExtra(COMMINFO, (Serializable) commodityInfos);
+                startActivity(intent);
             }
         });
     }

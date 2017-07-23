@@ -1,6 +1,8 @@
 package com.goodwarehouse.goodwarehouse.controller.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,8 @@ import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 import com.goodwarehouse.goodwarehouse.view.AddSubView;
 import com.goodwarehouse.goodwarehouse.view.FlowRadioGroup;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
@@ -103,32 +107,7 @@ public class JoinCartActivity extends BaseActivity implements View.OnClickListen
                 @Override
                 public void onClick(View view) {
 //                    Toast.makeText(JoinCartActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
-                    //商品ID
-                    goods_id = commodityBean.getData().getItems().getGoods_id();
-                    //商品名
-                    goods_name = commodityBean.getData().getItems().getGoods_name();
-                    //商品品牌名
-                    brand_name = commodityBean.getData().getItems().getBrand_info().getBrand_name();
-                    String goods_image = commodityBean.getData().getItems().getGoods_image();
-                    if (!TextUtils.isEmpty(discount_price)) {
-                        //商品折扣
-                        discount = Double.parseDouble(price) - Double.parseDouble(discount_price);
-                    }
-
-                    String image = TextUtils.isEmpty(img_path) ? goods_image : img_path;
-                    String amount = TextUtils.isEmpty(amount2) ? amount1 : amount2;
-                    commodiityNum.setMaxValue(Integer.parseInt(amount));
-                    CommodityInfo connInfo = new CommodityInfo(goods_id,
-                            brand_name,
-                            price,
-                            discount_price,
-                            goods_name,
-                            image,
-                            "" + discount,
-                            count,
-                            amount,
-                            attr_name,
-                            attrname);
+                    CommodityInfo connInfo = setCommodityInfo();
                     dao.addCommodity(connInfo);
                     Toast.makeText(JoinCartActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
                     finish();
@@ -140,7 +119,13 @@ public class JoinCartActivity extends BaseActivity implements View.OnClickListen
             btnComfort.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(JoinCartActivity.this, "直接购买", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(JoinCartActivity.this, "直接购买", Toast.LENGTH_SHORT).show();
+                    CommodityInfo connInfo = setCommodityInfo();
+                    List<CommodityInfo> commInfos = new ArrayList<CommodityInfo>();
+                    commInfos.add(connInfo);
+                    Intent intent = new Intent(JoinCartActivity.this, OrderInfoActivity.class);
+                    intent.putExtra(COMMINFO, (Serializable) commInfos);
+                    startActivity(intent);
                 }
             });
         } else if (isAdd.equals(SELECT)) {
@@ -150,33 +135,8 @@ public class JoinCartActivity extends BaseActivity implements View.OnClickListen
                 @Override
                 public void onClick(View view) {
 //                    Toast.makeText(JoinCartActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
-                    //商品ID
-                    goods_id = commodityBean.getData().getItems().getGoods_id();
-                    //商品名
-                    goods_name = commodityBean.getData().getItems().getGoods_name();
-                    //商品品牌名
-                    brand_name = commodityBean.getData().getItems().getBrand_info().getBrand_name();
-                    String goods_image = commodityBean.getData().getItems().getGoods_image();
-                    if (!TextUtils.isEmpty(discount_price)) {
-                        //商品折扣
-                        Log.e("TAG", discount_price + "||" + price);
-                        discount = Double.parseDouble(price) - Double.parseDouble(discount_price);
-                    }
+                    CommodityInfo connInfo = setCommodityInfo();
 
-                    String image = TextUtils.isEmpty(img_path) ? goods_image : img_path;
-                    String amount = TextUtils.isEmpty(amount2) ? amount1 : amount2;
-                    commodiityNum.setMaxValue(Integer.parseInt(amount));
-                    CommodityInfo connInfo = new CommodityInfo(goods_id,
-                            brand_name,
-                            price,
-                            discount_price,
-                            goods_name,
-                            image,
-                            "" + discount,
-                            count,
-                            amount,
-                            attr_name,
-                            attrname);
                     dao.addCommodity(connInfo);
                     Toast.makeText(JoinCartActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
                     finish();
@@ -185,7 +145,11 @@ public class JoinCartActivity extends BaseActivity implements View.OnClickListen
             btnPurchase.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(JoinCartActivity.this, "直接购买", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(JoinCartActivity.this, "直接购买", Toast.LENGTH_SHORT).show();
+                    CommodityInfo connInfo = setCommodityInfo();
+                    Intent intent = new Intent(JoinCartActivity.this, OrderInfoActivity.class);
+                    intent.putExtra(COMMINFO, connInfo);
+                    startActivity(intent);
                 }
             });
         }
@@ -210,6 +174,37 @@ public class JoinCartActivity extends BaseActivity implements View.OnClickListen
 
             }
         });
+    }
+
+    @NonNull
+    private CommodityInfo setCommodityInfo() {
+        //商品ID
+        goods_id = commodityBean.getData().getItems().getGoods_id();
+        //商品名
+        goods_name = commodityBean.getData().getItems().getGoods_name();
+        //商品品牌名
+        brand_name = commodityBean.getData().getItems().getBrand_info().getBrand_name();
+        String goods_image = commodityBean.getData().getItems().getGoods_image();
+        if (!TextUtils.isEmpty(discount_price)) {
+            //商品折扣
+            Log.e("TAG", discount_price + "||" + price);
+            discount = Double.parseDouble(price) - Double.parseDouble(discount_price);
+        }
+
+        String image = TextUtils.isEmpty(img_path) ? goods_image : img_path;
+        String amount = TextUtils.isEmpty(amount2) ? amount1 : amount2;
+        commodiityNum.setMaxValue(Integer.parseInt(amount));
+        return new CommodityInfo(goods_id,
+                brand_name,
+                price,
+                discount_price,
+                goods_name,
+                image,
+                "" + discount,
+                count,
+                amount,
+                attr_name,
+                attrname);
     }
 
     private void setDefaultChecked2(int i) {

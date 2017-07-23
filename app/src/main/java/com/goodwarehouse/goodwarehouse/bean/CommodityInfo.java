@@ -1,5 +1,9 @@
 package com.goodwarehouse.goodwarehouse.bean;
 
+import android.widget.RadioGroup;
+
+import java.io.Serializable;
+
 /**
  * Created by HaoMeng on 2017-07-20.
  */
@@ -13,7 +17,7 @@ package com.goodwarehouse.goodwarehouse.bean;
     private String commSum; 商品库存数量
 * */
 
-public class CommodityInfo {
+public class CommodityInfo implements Serializable {
     private String commID;
     private String brandName;
     private String commPrice;

@@ -15,6 +15,7 @@ import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.base.BaseActivity;
 import com.goodwarehouse.goodwarehouse.base.BaseFragment;
 import com.goodwarehouse.goodwarehouse.controller.fragment.shopfragment.HomePageFragment;
+import com.goodwarehouse.goodwarehouse.utils.ShareUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -32,6 +33,7 @@ public class WebPageActivity extends BaseActivity {
     ImageView webLike;
     @InjectView(R.id.web_share)
     ImageView webShare;
+    private String pic_url;
 
 
     @Override
@@ -49,6 +51,13 @@ public class WebPageActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        webShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShareUtils.setShareImagePath(pic_url);
+                ShareUtils.showShare(WebPageActivity.this);
             }
         });
     }
@@ -74,7 +83,7 @@ public class WebPageActivity extends BaseActivity {
                 super.onPageFinished(view, url);
             }
         });
-        String pic_url = getIntent().getStringExtra(BaseFragment.PIC_URL);
+        pic_url = getIntent().getStringExtra(BaseFragment.PIC_URL);
         webPage.loadUrl(pic_url);
     }
 

@@ -1,21 +1,15 @@
 package com.goodwarehouse.goodwarehouse.controller.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
-import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +18,10 @@ import android.widget.Toast;
 import com.goodwarehouse.goodwarehouse.R;
 import com.goodwarehouse.goodwarehouse.bean.CommodityInfo;
 import com.goodwarehouse.goodwarehouse.model.dao.CommodityDAO;
-import com.goodwarehouse.goodwarehouse.model.table.Commodity;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 import com.goodwarehouse.goodwarehouse.view.AddSubView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -47,6 +41,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     private final CheckBox allSelected;
     private final CheckBox allSelectedAccomplish;
     private int state = 1;
+    private double originalPriceSun;
+    List<CommodityInfo> commodityInfos;
+
+    public List<CommodityInfo> getcommodityInfo() {
+        return commodityInfos;
+    }
 
     public CartAdapter(Context context, List<CommodityInfo> commAll, TextView cartDiscount, TextView cartTotalPrices, CheckBox allSelected, CheckBox allSelectedAccomplish) {
         this.context = context;
@@ -56,6 +56,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         this.cartTotalPrices = cartTotalPrices;
         this.allSelected = allSelected;
         this.allSelectedAccomplish = allSelectedAccomplish;
+        commodityInfos = new ArrayList<>();
         getTotalPrice();
         checkAll();
     }
@@ -97,6 +98,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 String price = TextUtils.isEmpty(commodityInfo.getCommOriginalPrice()) ? commodityInfo.getCommPrice() : commodityInfo.getCommOriginalPrice();
                 result += Double.parseDouble(price) * commodityInfo.getCommCount();
                 discount += Double.parseDouble(commodityInfo.getCommDiscount()) * commodityInfo.getCommCount();
+                if (state == 1) {
+                    commodityInfos.add(commodityInfo);
+                }
             }
         }
         cartTotalPrices.setText("￥:" + result);
@@ -268,14 +272,4 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         }
     }
 
-    private OnNumberListener onNumberListener;
-
-    public void setOnNumberListener(OnNumberListener onNumberListener) {
-        this.onNumberListener = onNumberListener;
-    }
-
-    public interface OnNumberListener {
-
-        void onNumberClick(CommodityInfo commodityInfo, int number);
-    }
 }

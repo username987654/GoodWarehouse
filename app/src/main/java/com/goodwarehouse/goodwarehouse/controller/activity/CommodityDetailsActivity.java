@@ -25,11 +25,13 @@ import com.goodwarehouse.goodwarehouse.controller.fragment.commodityfragment.Buy
 import com.goodwarehouse.goodwarehouse.controller.fragment.commodityfragment.CommodityDetailsFragment;
 import com.goodwarehouse.goodwarehouse.utils.HttpUtils;
 import com.goodwarehouse.goodwarehouse.utils.NetRequestSite;
+import com.goodwarehouse.goodwarehouse.utils.ShareUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * Created by HaoMeng on 2017-07-08.
@@ -127,23 +129,19 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
 
     @Override
     public void initListener() {
+        commoityShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShareUtils.setShareImagePath(commodityDetailsBean.getData().getItems().getGoods_image());
+                ShareUtils.setShareTitleUrl(commodityDetailsBean.getData().getItems().getGoods_url());
+                ShareUtils.setShareText(commodityDetailsBean.getData().getItems().getGoods_name());
+                ShareUtils.showShare(CommodityDetailsActivity.this);
+            }
+        });
         commoditySwitchSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = commodityDetailsBean.getData().getItems().getOwner_name();
-                image = commodityDetailsBean.getData().getItems().getGoods_image();
-                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
-                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
-                price = commodityDetailsBean.getData().getItems().getPrice();
-                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
-                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
-                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
-                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
-                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
-                intent.putExtra(ISADD, SELECT);
-                intent.putExtra("COMMODITY", commodityDetailsBean);
-                intent.putExtra("CARTDATA", cartData);
-                startActivity(intent);
+                getCartData(SELECT);
             }
         });
         commodityBack.setOnClickListener(new View.OnClickListener() {
@@ -171,40 +169,14 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
             @Override
             public void onClick(View view) {
 //                Toast.makeText(CommodityDetailsActivity.this, "加入购物车", Toast.LENGTH_SHORT).show();
-                name = commodityDetailsBean.getData().getItems().getOwner_name();
-                image = commodityDetailsBean.getData().getItems().getGoods_image();
-                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
-                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
-                price = commodityDetailsBean.getData().getItems().getPrice();
-                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
-                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
-                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
-                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
-                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
-                intent.putExtra(ISADD, JOINCART);
-                intent.putExtra("COMMODITY", commodityDetailsBean);
-                intent.putExtra("CARTDATA", cartData);
-                startActivity(intent);
+                getCartData(JOINCART);
             }
         });
         commodityPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(CommodityDetailsActivity.this, "直接加入购物车", Toast.LENGTH_SHORT).show();
-                name = commodityDetailsBean.getData().getItems().getOwner_name();
-                image = commodityDetailsBean.getData().getItems().getGoods_image();
-                goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
-                discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
-                price = commodityDetailsBean.getData().getItems().getPrice();
-                prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
-                skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
-                sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
-                CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
-                Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
-                intent.putExtra(ISADD, PURCHASE);
-                intent.putExtra("COMMODITY", commodityDetailsBean);
-                intent.putExtra("CARTDATA", cartData);
-                startActivity(intent);
+                getCartData(PURCHASE);
 
             }
         });
@@ -224,7 +196,7 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
             @Override
             public void onClick(View view) {
                 if (i) {
-                    commodityLike.setImageResource(R.drawable.ic_my_wish);
+                    commodityLike.setImageResource(R.drawable.like_big);
                     i = false;
                 } else {
                     commodityLike.setImageResource(R.drawable.like_not_big);
@@ -252,6 +224,23 @@ public class CommodityDetailsActivity extends BaseActivity implements View.OnCli
 
             }
         });
+    }
+
+    private void getCartData(String s) {
+        name = commodityDetailsBean.getData().getItems().getOwner_name();
+        image = commodityDetailsBean.getData().getItems().getGoods_image();
+        goods_name = commodityDetailsBean.getData().getItems().getGoods_name();
+        discount_price = commodityDetailsBean.getData().getItems().getDiscount_price();
+        price = commodityDetailsBean.getData().getItems().getPrice();
+        prices = TextUtils.isEmpty(discount_price) == true ? price : discount_price;
+        skuinfobean = commodityDetailsBean.getData().getItems().getSku_info();
+        sku_inv = commodityDetailsBean.getData().getItems().getSku_inv();
+        CommodityCartData cartData = new CommodityCartData(name, image, goods_name, prices, skuinfobean, sku_inv);
+        Intent intent = new Intent(CommodityDetailsActivity.this, JoinCartActivity.class);
+        intent.putExtra(ISADD, s);
+        intent.putExtra("COMMODITY", commodityDetailsBean);
+        intent.putExtra("CARTDATA", cartData);
+        startActivity(intent);
     }
 
     @Override
